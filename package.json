@@ -1,0 +1,43 @@
+{
+  "name": "Askaros",
+  "version": "1.0.0",
+  "description": "Simple QA application",
+  "author": "oleg",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/dotenv": "^1.3.0",
+    "ant-design-vue": "^1.3.2",
+    "cookieparser": "^0.1.0",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.3",
+    "js-cookie": "^2.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "lodash": "^4.17.11",
+    "mobx": "^5.9.0",
+    "mobx-vue": "^2.0.8",
+    "moment": "^2.24.0",
+    "nuxt": "^2.0.0",
+    "query-string": "^6.2.0",
+    "vue-class-component": "^6.3.2",
+    "vue-resource": "^1.5.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "nodemon": "^1.11.0"
+  }
+}
