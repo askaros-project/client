@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <div v-if="!account.isLoggedIn">
+    <div v-if="!$store.state.isLoggedIn">
       <h1>The service WHY</h1>
       <div class="list-wrap">
       <ul>
@@ -17,7 +17,7 @@
     </div>
     </div>
     <h1>
-      <span v-if="!account.isLoggedIn">Ask a question</span></h1>
+      <span v-if="!$store.state.isLoggedIn">Ask a question</span></h1>
     <Builder></Builder>
     <div style="padding: 0 10px;">
       <h1>Trending questions</h1>
@@ -39,12 +39,7 @@
   export default {
     name: "home",
     layout: 'default/index',
-    components: { Builder, Collection },
-    data() {
-      return {
-        account: this.$mobx.account
-      }
-    }
+    components: { Builder, Collection }
 }
 </script>
 

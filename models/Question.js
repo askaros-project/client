@@ -82,8 +82,10 @@ class QuestionMarks {
 	}
 
 	@action
-	update({ items = [] } = {}) {
-		this.items = items
+	update(data) {
+		if (data && data.items.length) {
+			this.items = data.items
+		}
 	}
 }
 
@@ -262,9 +264,17 @@ export class Question {
 		this.title = data.title
 		this.uri = data.uri
 		this.createdAt = data.createdAt
-		this.votes.update(data.votes)
-		this.tags.update(data.tags)
-		this.marks.update(data.marks)
-		this.comments.update(data.comments)
+		if (data.votes) {
+			this.votes.update(data.votes)
+		}
+		if (data.tags) {
+			this.tags.update(data.tags)
+		}
+		if (data.marks) {
+			this.marks.update(data.marks)
+		}
+		if (data.comments) {
+			this.comments.update(data.comments)
+		}
 	}
 }

@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import Header from "./Header"
-import Content from "./Content"
-import Footer from "./Footer"
-import LoginModal from "./LoginModal"
+import Header from "./default/Header"
+import Content from "./default/Content"
+import Footer from "./default/Footer"
+import LoginModal from "./default/LoginModal"
 export default {
-	name: "MainLayout",
+	name: "DefaultLayout",
 	components: { Header, Content, Footer, LoginModal },
 	props: {
 		contentType: {

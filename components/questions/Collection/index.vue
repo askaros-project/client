@@ -37,9 +37,10 @@
       this.$http.get('questions/collection/' + type + '?' + queryString.stringify(params))
       .then((resp) => {
         this.isFetched = true
-        this.items = _.map(resp.body.questions, (data) => {
+        let models = _.map(resp.body.questions, (data) => {
           return new QuestionModel(data)
         })
+        this.items = models
       })
     },
     methods: {
