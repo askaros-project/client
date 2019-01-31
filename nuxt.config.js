@@ -43,6 +43,7 @@ module.exports = {
   plugins: [
     '~/plugins/antd',
     '~/plugins/mobx',
+    { src: '~/plugins/infinite_scroll', ssr: false },
     { src: '~/plugins/http', ssr: false },
     { src: '~/plugins/init_load', ssr: false },
     { src: '~/plugins/third_party_load', ssr: false }
