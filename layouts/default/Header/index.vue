@@ -1,12 +1,12 @@
 <template>
 	<a-layout-header class="main-layout-header">
-		<router-link to="/"><logo></logo></router-link>
+		<nuxt-link to="/"><logo></logo></nuxt-link>
 		<ul class="controls">
 			<li>
 				<SearchField></SearchField>
 			</li>
 			<li>
-				<router-link to="/trending">Trending</router-link>
+				<nuxt-link to="/trending">Trending</nuxt-link>
 			</li>
 			<li v-if="!$store.state.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">
@@ -19,9 +19,9 @@
 				</a-button>
 			</li>
 			<li v-if="$store.state.isLoggedIn">
-				<router-link to="/activity">Activity
+				<nuxt-link to="/activity">Activity
 					<a-badge :count="activityCounter.value"></a-badge>
-				</router-link>
+				</nuxt-link>
 			</li>
 			<li v-if="$store.state.isLoggedIn">
 				<ProfileButton></ProfileButton>

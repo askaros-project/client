@@ -33,8 +33,8 @@ module.exports = {
   */
   css: [
     '~/static/styles/reset.css',
-    '~/static/styles/app.css',
-    '~~/node_modules/ant-design-vue/dist/antd.min.css'
+    '~~/node_modules/ant-design-vue/dist/antd.min.css',
+    '~/static/styles/app.css'
   ],
 
   /*
@@ -43,6 +43,7 @@ module.exports = {
   plugins: [
     '~/plugins/antd',
     '~/plugins/mobx',
+    '~/plugins/filters',
     { src: '~/plugins/infinite_scroll', ssr: false },
     { src: '~/plugins/http', ssr: false },
     { src: '~/plugins/init_load', ssr: false },
