@@ -156,16 +156,5 @@
         //border-left: none;
       }
     }
-    .taco-icon {
-      background-image: url('/static/images/taco-icon.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-      margin: 0 10px;
-      opacity: 0.3;
-      cursor: pointer;
-    }
   }
 </style>

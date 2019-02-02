@@ -27,7 +27,7 @@
       margin-left: 3px;
     }
     .icon {
-      background-image: url('/static/images/taco-icon.png');
+      background-image: url('/images/taco-icon.png');
       background-repeat: no-repeat;
       background-size: contain;
       width: 16px;

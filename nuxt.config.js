@@ -44,6 +44,8 @@ module.exports = {
     '~/plugins/antd',
     '~/plugins/mobx',
     '~/plugins/filters',
+    '~/plugins/wysiwyg',
+    { src: '~/plugins/highcharts', ssr: false },
     { src: '~/plugins/infinite_scroll', ssr: false },
     { src: '~/plugins/http', ssr: false },
     { src: '~/plugins/init_load', ssr: false },

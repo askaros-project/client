@@ -67,7 +67,7 @@
       }
 
       .facebook-icon {
-        background-image: url('/static/images/facebook-icon.png');
+        background-image: url('/images/facebook-icon.png');
         background-size: contain;
         width: 18px;
         height: 18px;
@@ -75,7 +75,7 @@
       }
 
       .google-icon {
-        background-image: url('/static/images/google-icon.png');
+        background-image: url('/images/google-icon.png');
         background-size: contain;
         width: 24px;
         height: 24px;
