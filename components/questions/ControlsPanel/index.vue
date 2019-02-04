@@ -48,10 +48,14 @@
   	name: 'ControlsPanel',
   	props: { question: Object, toggleComments: Function},
 
-  	computed: {
-  		redditShareUrl() {
-				return '//www.reddit.com/submit?url=' + location.href
-			}
+  	data() {
+  		return {
+  			redditShareUrl: ''
+  		}
+  	},
+
+  	mounted() {
+  		this.redditShareUrl = '//www.reddit.com/submit?url=' + location.href
   	},
 
   	methods: {

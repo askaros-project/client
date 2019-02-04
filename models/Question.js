@@ -101,11 +101,6 @@ class QuestionComments {
 		this.question = question
 	}
 
-	// @computed
-	// get isSpam() {
-	// 	return this.items.some(m => m.code === MARK_SPAM)
-	// }
-
 	@action
 	load() {
 		this.isLoading = true
@@ -162,9 +157,15 @@ class QuestionComments {
 	}
 
 	@action
-	update({ items, total } = {}) {
-		this.items = items || this.items
-		this.total = total ? total : this.items.length
+	update(data) {
+		if (data.items) {
+			this.items = data.items
+		}
+		if (data.total) {
+			console.log(data)
+			console.log(this.total)
+			this.total = data.total
+		}
 	}
 }
 
@@ -200,6 +201,8 @@ export class Question {
 				this.isPending = false
 				this.update(resp.body.question)
 				this.isFetched = true
+				return Promise.resolve(resp.body.question)
+				return resp.body.question
 			})
 			.catch(err => {
 				this.isPending = false
@@ -264,9 +267,9 @@ export class Question {
 		this.title = data.title
 		this.uri = data.uri
 		this.createdAt = data.createdAt
-		if (data.votes) {
-			this.votes.update(data.votes)
-		}
+		// if (data.votes) {
+		// 	this.votes.update(data.votes)
+		// }
 		if (data.tags) {
 			this.tags.update(data.tags)
 		}

@@ -32,8 +32,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/static/styles/reset.css',
     '~~/node_modules/ant-design-vue/dist/antd.min.css',
+    '~/static/styles/reset.css',
     '~/static/styles/app.css'
   ],
 
@@ -45,9 +45,9 @@ module.exports = {
     '~/plugins/mobx',
     '~/plugins/filters',
     '~/plugins/wysiwyg',
+    '~/plugins/http',
     { src: '~/plugins/highcharts', ssr: false },
     { src: '~/plugins/infinite_scroll', ssr: false },
-    { src: '~/plugins/http', ssr: false },
     { src: '~/plugins/init_load', ssr: false },
     { src: '~/plugins/third_party_load', ssr: false }
   ],
