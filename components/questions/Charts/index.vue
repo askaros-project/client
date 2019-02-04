@@ -4,17 +4,12 @@
 
 <script>
   import _ from 'lodash'
+  import { observer } from 'mobx-vue'
   import moment from 'moment'
   import { VOTE_YES, VOTE_NO } from '~/constants'
-  export default {
+  export default observer({
     props: {
       question: Object,
-    },
-
-    data() {
-      return {
-        votes: this.question.votes
-      }
     },
 
     methods: {
@@ -22,7 +17,7 @@
       getChartOptions() {
         let options = {
           title: '',
-          series: this.prepareSeries(this.votes.items),
+          series: this.prepareSeries(this.question.votes.items),
           navigator: {
             enabled: false
           },
@@ -158,7 +153,7 @@
         return series
       }
     }
-  }
+  })
 </script>
 <style lang="less">
   .stock-chart {

@@ -162,8 +162,6 @@ class QuestionComments {
 			this.items = data.items
 		}
 		if (data.total) {
-			console.log(data)
-			console.log(this.total)
 			this.total = data.total
 		}
 	}
@@ -267,9 +265,9 @@ export class Question {
 		this.title = data.title
 		this.uri = data.uri
 		this.createdAt = data.createdAt
-		// if (data.votes) {
-		// 	this.votes.update(data.votes)
-		// }
+		if (data.votes) {
+			this.votes.update(data.votes)
+		}
 		if (data.tags) {
 			this.tags.update(data.tags)
 		}
