@@ -4,6 +4,7 @@
       <a-select :default-value="selectedPrefix" @select="onSelect">
         <a-select-option
           v-for="(prefix, index) in prefixes"
+          :key="`prefix-${index}`"
           :value="index">
           {{ prefix }}
         </a-select-option>

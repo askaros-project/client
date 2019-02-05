@@ -1,6 +1,7 @@
 <template>
 	<div class="tags">
-		<Tag v-for="code in sortedCodes"
+		<Tag v-for="(code, index) in sortedCodes"
+			:key="`tag-${index}`"
 			:code="code"
 			:title="$messages.TAG[code]"
 			:selected="question.tags.selected === code"

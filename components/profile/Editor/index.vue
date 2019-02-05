@@ -36,7 +36,10 @@
         ]"
         placeholder='Please select a birth year'
       >
-        <a-select-option v-for="year in birthyearOptions" :value='year'>{{year}}</a-select-option>
+        <a-select-option
+          v-for="(year, index) in birthyearOptions"
+          :key="`birthyear-${index}`"
+          :value='year'>{{year}}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item
@@ -50,7 +53,10 @@
         ]"
         placeholder='Please select a sex'
       >
-        <a-select-option v-for="opt in sexOptions" :value='opt.type'>{{ opt.label }}</a-select-option>
+        <a-select-option
+          v-for="(opt, index) in sexOptions"
+          :key="`sex-${index}`"
+          :value='opt.type'>{{ opt.label }}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item
@@ -64,7 +70,9 @@
         ]"
         placeholder='Please select a education level'
       >
-        <a-select-option v-for="opt in educationOptions" :value='opt.type'>{{ opt.label }}</a-select-option>
+        <a-select-option v-for="(opt, index) in educationOptions"
+          :key="`edu-${index}`"
+          :value='opt.type'>{{ opt.label }}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item
@@ -78,7 +86,9 @@
         ]"
         placeholder='Please select an income level'
       >
-        <a-select-option v-for="opt in incomeOptions" :value='opt.type'>{{ opt.label }}</a-select-option>
+        <a-select-option v-for="(opt, index) in incomeOptions"
+          :key="`income-${index}`"
+          :value='opt.type'>{{ opt.label }}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item

@@ -1,36 +1,36 @@
 <template>
 	<div class="profile-page">
-		<div v-if="account && account.isFetched && !isEdit" class="user-info">
+		<div v-if="account.model && account.model.isFetched && !isEdit" class="user-info">
 			<ul>
-				<li><label>Name:</label> {{ account.user.username }}</li>
+				<li><label>Name:</label> {{ account.model.user.username }}</li>
 				<li>
 					<label>Location:</label>
-					<span v-if="account.user.place">{{account.user.place.formatted_address}}</span>
+					<span v-if="account.model.user.place">{{account.model.user.place.formatted_address}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 				<li>
 					<label>Birth year:</label>
-					<span v-if="account.user.birthyear">{{account.user.birthyear}}</span>
+					<span v-if="account.model.user.birthyear">{{account.model.user.birthyear}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 				<li>
 					<label>Sex:</label>
-					<span v-if="account.user.sex">{{$messages.SEX[account.user.sex]}}</span>
+					<span v-if="account.model.user.sex">{{$messages.SEX[account.model.user.sex]}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 				<li>
 					<label>Education:</label>
-					<span v-if="account.user.education">{{$messages.EDUCATION[account.user.education]}}</span>
+					<span v-if="account.model.user.education">{{$messages.EDUCATION[account.model.user.education]}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 				<li>
 					<label>Income:</label>
-					<span v-if="account.user.income">{{$messages.INCOME[account.user.income]}}</span>
+					<span v-if="account.model.user.income">{{$messages.INCOME[account.model.user.income]}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 				<li>
 					<label>Description:</label>
-					<span v-if="account.user.descr">{{account.user.descr}}</span>
+					<span v-if="account.model.user.descr">{{account.model.user.descr}}</span>
 					<span v-else class="empty-value">not set</span>
 				</li>
 			</ul>
@@ -40,7 +40,7 @@
 			v-if="isEdit"
 			v-on:cancel="toggleEdit"
 			v-on:save="handleSave"></Editor>
-		<Questions v-show="account && account.isFetched && !isEdit"></Questions>
+		<Questions v-show="account.model && account.model.isFetched && !isEdit"></Questions>
 	</div>
 </template>
 
@@ -54,12 +54,14 @@
   	components: { Spin, Editor, Questions },
   	data() {
   		return {
-  			account: null,
+  			account: {
+  				model: null
+  			},
   			isEdit: false
   		}
   	},
   	mounted() {
-  		this.account = this.$mobx.account
+  		this.account.model = this.$mobx.account
   	},
   	methods: {
   		toggleEdit() {
