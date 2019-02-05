@@ -6,7 +6,7 @@
 				<SearchField></SearchField>
 			</li>
 			<li>
-				<nuxt-link to="/profile">Trending</nuxt-link>
+				<nuxt-link to="/trending">Trending</nuxt-link>
 			</li>
 			<li v-if="!$store.state.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">

@@ -17,6 +17,7 @@
 
 <script>
   import _ from 'lodash'
+  import { reaction } from 'mobx'
   import { observer } from 'mobx-vue'
   import moment from 'moment'
   import {
@@ -72,7 +73,7 @@
 
   export default observer({
     props: {
-      question: Object,
+      'question': Object,
     },
 
     data() {
@@ -89,18 +90,27 @@
         },{
           type: 'income', label: 'Income'
         }],
-        votes: []
+        votesItems: []
       }
     },
 
     mounted() {
-      this.$http.get('questions/' + this.question._id + '/votes').then((resp) => {
-        this.votes = resp.body.votes
-        this.votes = generateTestData()
-      })
+      this.fetch()
+      const throttledFetch = _.debounce(this.fetch.bind(this), 500)
+      reaction(() => this.question.votes.items,
+        length => {
+          throttledFetch()
+        })
     },
 
     methods: {
+
+      fetch() {
+        this.$http.get('questions/' + this.question._id + '/votes').then((resp) => {
+          this.votesItems = resp.body.votes
+          // this.votes = generateTestData()
+        })
+      },
 
       selectType(type) {
         this.selectedType = type
@@ -118,7 +128,8 @@
           },
           yAxis: {
             title: {text: "Votes"},
-            opposite: true
+            opposite: true,
+            min: 0
           },
           series: this.prepareSeries(),
         }
@@ -166,7 +177,7 @@
           }]
         } else if (this.selectedType === 'country') {
           let countriesMap = {}
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             const country = getCountryFromPLace(item.owner.place)
             if (country) {
               if (!countriesMap[country]) {
@@ -218,7 +229,7 @@
 
         if (this.selectedType === 'age') {
           const currentYear = (new Date()).getFullYear()
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             if (item.owner.birthyear) {
               const age = currentYear - item.owner.birthyear
               for(let i = 0; i < categories.length; i++) {
@@ -230,7 +241,7 @@
             }
           })
         } else if (this.selectedType === 'sex') {
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             if (item.owner.sex) {
               if (item.owner.sex === categories[0].type) {
                 series[ item.code === VOTE_YES ? 0 : 1 ].data[0]++
@@ -240,7 +251,7 @@
             }
           })
         } else if (this.selectedType === 'country') {
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             const country = getCountryFromPLace(item.owner.place)
             if (country) {
               const countryIndex = _.findIndex(categories, (cat) => cat.label === country)
@@ -250,7 +261,7 @@
             }
           })
         } else if (this.selectedType === 'education') {
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             if (item.owner.education) {
               const index = _.findIndex(categories, (cat) => cat.type === item.owner.education)
               if (index !== -1) {
@@ -259,7 +270,7 @@
             }
           })
         } else if (this.selectedType === 'income') {
-          _.each(this.votes, (item) => {
+          _.each(this.votesItems, (item) => {
             if (item.owner.income) {
               const index = _.findIndex(categories, (cat) => cat.type === item.owner.income)
               if (index !== -1) {
