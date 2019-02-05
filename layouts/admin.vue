@@ -20,12 +20,16 @@ export default {
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 	.admin-layout {
 		height: 100%;
 
 		.ant-layout-content {
 			height: 100%;
+		}
+
+		.ant-table-pagination {
+			padding: 0 10px 10px;
 		}
 	}
 </style>

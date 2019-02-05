@@ -3,6 +3,7 @@
     :row-key="record => record._id"
     :data-source="data"
     :loading="isPending"
+    :scroll="{ x: 1420 }"
     :pagination="pagination"
     @change="handleTableChange"
   >
@@ -26,10 +27,16 @@
       	<div class="ellipsis">{{ descr }}</div>
       </a-tooltip>
     </template>
-    <template slot="location" slot-scope="location">
-    	<a-tooltip v-if="location" :title="location">
-      	<div class="ellipsis">{{ location }}</div>
+    <template slot="location" slot-scope="place">
+    	<a-tooltip v-if="place" :title="place.formatted_address">
+      	<div class="ellipsis">{{ place.formatted_address }}</div>
       </a-tooltip>
+    </template>
+    <template slot="education" slot-scope="education">
+    	{{$messages.EDUCATION[education]}}
+    </template>
+    <template slot="income" slot-scope="income">
+    	{{$messages.INCOME[income]}}
     </template>
     <template slot="isAdmin" slot-scope="account">
     	<a-switch :default-checked="account.isAdmin" @change='handleAdminChange(account)'></a-switch>
@@ -60,16 +67,19 @@ export default {
 			columns: [{
 				title: 'Created at',
 				dataIndex: 'createdAt',
+				fixed: 'left',
 				key: 'createdAt',
 				width: 160,
 			  scopedSlots: { customRender: 'createdAt' },
 			},{
 			  title: 'Name',
 			  dataIndex: 'user.username',
+			  fixed: 'left',
 			  scopedSlots: {
 			    filterDropdown: 'filterDropdown',
 			    filterIcon: 'filterIcon',
 			  },
+			  width: 180,
 			  onFilter: (value, record) => record.name.toLowerCase().includes(value.toLowerCase()),
 			  onFilterDropdownVisibleChange: (visible) => {
 			    if (visible) {
@@ -80,14 +90,9 @@ export default {
 			  },
 			},{
 			  title: 'Location',
-			  dataIndex: 'user.location',
-			  width: 150,
+			  dataIndex: 'user.place',
+			  width: 200,
 			  scopedSlots: { customRender: 'location' },
-			},{
-			  title: 'Description',
-			  dataIndex: 'user.descr',
-			  width: 150,
-			  scopedSlots: { customRender: 'descr' },
 			},{
 			  title: 'Birth year',
 			  dataIndex: 'user.birthyear',
@@ -95,14 +100,31 @@ export default {
 			},{
 			  title: 'Sex',
 			  dataIndex: 'user.sex',
-			  width: 80
+			  width: 100
+			},{
+			  title: 'Education',
+			  dataIndex: 'user.education',
+			  scopedSlots: { customRender: 'education' },
+			  width: 120
+			},{
+			  title: 'Income',
+			  dataIndex: 'user.income',
+			  scopedSlots: { customRender: 'income' },
+			  width: 120
+			},{
+			  title: 'Description',
+			  dataIndex: 'user.descr',
+			  width: 200,
+			  scopedSlots: { customRender: 'descr' },
 			},{
 			  title: 'Suspended',
 			  scopedSlots: { customRender: 'isSuspended' },
+			  fixed: 'right',
 			  width: 120
 			},{
 			  title: 'Admin',
 			  scopedSlots: { customRender: 'isAdmin' },
+			  fixed: 'right',
 			  width: 120
 			}]
 		}
