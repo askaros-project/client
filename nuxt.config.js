@@ -42,10 +42,11 @@ module.exports = {
   */
   plugins: [
     '~/plugins/antd',
-    '~/plugins/mobx',
     '~/plugins/filters',
-    '~/plugins/wysiwyg',
+    '~/plugins/messages',
+    '~/plugins/mobx',
     '~/plugins/http',
+    '~/plugins/wysiwyg',
     { src: '~/plugins/highcharts', ssr: false },
     { src: '~/plugins/infinite_scroll', ssr: false },
     { src: '~/plugins/init_load', ssr: false },

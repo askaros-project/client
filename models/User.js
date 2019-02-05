@@ -5,19 +5,37 @@ export class User {
 	@observable isPending = false
 	@observable _id
 	@observable username
-	@observable location
+	@observable place
 	@observable descr
 	@observable birthyear
 	@observable sex
+	@observable education
+	@observable income
 	constructor(data) {
 		this.update(data)
 	}
 
 	@action
-	save({ username, location = '', descr = '', birthyear, sex }) {
+	save({
+		username,
+		place = null,
+		descr = '',
+		birthyear,
+		sex,
+		education,
+		income
+	}) {
 		this.isPending = true
 		return Vue.http
-			.put('user', { username, location, descr, birthyear, sex })
+			.put('user', {
+				username,
+				place,
+				descr,
+				birthyear,
+				sex,
+				education,
+				income
+			})
 			.then(resp => {
 				this.isPending = false
 				this.update(resp.body.user)
@@ -32,9 +50,11 @@ export class User {
 	update(data = {}) {
 		this._id = data._id
 		this.username = data.username
-		this.location = data.location
+		this.place = data.place
 		this.descr = data.descr
 		this.birthyear = data.birthyear
 		this.sex = data.sex
+		this.education = data.education
+		this.income = data.income
 	}
 }

@@ -8,9 +8,9 @@
 				<span class="tag-wrap">
 					<span class="time">{{item.createdAt | formatDateFromNow}}</span>
 					<router-link v-if="item.question" :to="'/q/' + item.question.uri">
-						<a-tag :color="colors[item.type]">{{ titles[item.type] }}</a-tag>
+						<a-tag :color="colors[item.type]">{{ $messages.ACTIVITY[item.type] }}</a-tag>
 					</router-link>
-					<a-tag v-else :color="colors[item.type]">{{ titles[item.type] }}</a-tag>
+					<a-tag v-else :color="colors[item.type]">{{ $messages.ACTIVITY[item.type] }}</a-tag>
 				</span>
 				<router-link v-if="item.question" :to="'/q/' + item.question.uri">{{item.question.title}}</router-link>
 				<span v-else>DELETED</span>
@@ -53,17 +53,6 @@
 				isLoadingMore: false,
 				items: [],
 				pagination: {pageSize: 25, page: 1, total: 0},
-				titles: {
-					[ACTIVITY_QUESTION]: 'Question created',
-					[ACTIVITY_VOTE]: 'Question answered',
-					[ACTIVITY_TAG]: 'Question tagged',
-					[ACTIVITY_COMMENT]: 'Question commented',
-					[ACTIVITY_SOMEONE_VOTE]: 'Someone answer your question',
-					[ACTIVITY_SOMEONE_TAG]: 'Someone tag your question',
-					[ACTIVITY_SOMEONE_COMMENT]: 'Someone commented your question',
-					[ACTIVITY_SOMEONE_REPLY]: 'Someone reply to your question',
-					[ACTIVITY_OTHERS_VOTE_AS_WELL]: 'Others answered as well'
-				},
 				colors: {
 					[ACTIVITY_QUESTION]: 'green',
 					[ACTIVITY_VOTE]: 'green',

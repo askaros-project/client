@@ -2,7 +2,7 @@
 	<div class="tags">
 		<Tag v-for="code in sortedCodes"
 			:code="code"
-			:title="titles[code]"
+			:title="$messages.TAG[code]"
 			:selected="question.tags.selected === code"
 			:count="question.tags.counts[code]"
 			:is-tagged="question.tags.isTagged"
@@ -39,17 +39,7 @@
 					TAG_NOT_WHOLE,
 					TAG_PRETTY_MUCH_TRUE,
 		  		TAG_EXPECTED	
-		  	],
-
-		  	titles: {
-		  		[TAG_UNEXPECTED]: 'Unexpected',
-					[TAG_CHANGE_IN_FUTURE]: 'Will change in the future',
-					[TAG_UNFAIR]: 'Unfair',
-					[TAG_NOT_WHOLE]: 'Not the whole story',
-					[TAG_PRETTY_MUCH_TRUE]: 'Pretty much true',
-					[TAG_WEIRD]: 'Weird',
-					[TAG_EXPECTED]: 'Expected',
-		  	}
+		  	]
   		}
   	},
 

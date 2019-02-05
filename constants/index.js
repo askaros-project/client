@@ -21,3 +21,15 @@ export const ACTIVITY_OTHERS_VOTE_AS_WELL = 'OTHERS_VOTE_AS_WELL'
 
 export const MARK_SPAM = 1
 export const MARK_LIKE = 2
+
+export const SEX_MALE = 'Male'
+export const SEX_FEMALE = 'Female'
+
+export const EDUCATION_LEVEL_SPECIALIST = 'Specialist'
+export const EDUCATION_LEVEL_BACHELOR = 'Bachelor'
+export const EDUCATION_LEVEL_MASTER = 'Master'
+export const EDUCATION_LEVEL_DOCTOR = 'Doctor'
+
+export const INCOME_LEVEL_MIN = 'min'
+export const INCOME_LEVEL_MIDDLE = 'middle'
+export const INCOME_LEVEL_MAX = 'max'

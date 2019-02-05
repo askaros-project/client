@@ -1,5 +1,5 @@
 <template>
-  <highcharts class="stock-chart" :constructor-type="'stockChart'" :options="getChartOptions()"></highcharts>
+  <highcharts class="sentiment-chart" :constructor-type="'stockChart'" :options="getChartOptions()"></highcharts>
 </template>
 
 <script>
@@ -156,7 +156,7 @@
   })
 </script>
 <style lang="less">
-  .stock-chart {
+  .sentiment-chart {
     width: 100%;
     margin: 0 auto;
     height: 270px;

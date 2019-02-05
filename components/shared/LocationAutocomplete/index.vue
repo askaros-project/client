@@ -20,7 +20,7 @@ export default {
 	    )
 	    this.autocomplete.addListener('place_changed', () => {
 			  const place = this.autocomplete.getPlace()
-			  this.$emit('change', place.formatted_address)
+			  this.$emit('change', place)
 			})
 	  }
   }

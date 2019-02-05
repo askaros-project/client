@@ -22,7 +22,11 @@
 			:question="q.model"></CommentsPanel>
 		<div v-if="q.model.isFetched">
 			<h2>Sentiment</h2>
-			<Charts :question="q.model"></Charts>
+			<SentimentChart :question="q.model"></SentimentChart>
+		</div>
+		<div v-if="q.model.isFetched">
+			<h2>Stats</h2>
+			<StatsChart :question="q.model"></StatsChart>
 		</div>
 		<div v-if="q.model.isFetched">
 			<h2>Related questions</h2>
@@ -34,7 +38,7 @@
 			style="max-width: 600px; margin: 60px auto;"
 			:autofocus="true"
 			v-on:success="handleQuestionBuildSuccess"></Builder>
-		<Spin v-if="q.model.isPending"></Spin>
+		<Spin v-if="!q.model.isFetched && q.model.isPending"></Spin>
 	</div>
 </template>
 
@@ -51,17 +55,22 @@
 	import MarksPanel from "~/components/questions/MarksPanel"
 	import CommentsPanel from "~/components/questions/CommentsPanel"
 	import Related from "~/components/questions/Related"
-	import Charts from "~/components/questions/Charts"
+	import SentimentChart from "~/components/questions/SentimentChart"
+	import StatsChart from "~/components/questions/StatsChart"
 
   export default observer({
   	name: 'QuestionPage',
-  	components: { Spin, VoteButton, Builder, TagsPanel, ControlsPanel, MarksPanel, CommentsPanel, Related, Charts },
-
-  	asyncData ({ params }) {
+  	components: {
+  		Spin, VoteButton, Builder, TagsPanel, ControlsPanel,
+  		MarksPanel, CommentsPanel, Related, SentimentChart, StatsChart
+  	},
+  	asyncData ({ params, error }) {
   		const question = new QuestionModel()
   		return question.loadByUri(params.uri, {detailed: false}).then((resp) => {
   			return {asyncQuestionData: resp}
-  		})
+  		}).catch((e) => {
+	      error({ statusCode: 404, message: 'Question not found' })
+	    })
 	  },
 
 	  head() {
