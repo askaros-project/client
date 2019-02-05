@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
+  env: {
+    OPP: 'OPP'
+  },
+
   /*
   ** Headers of the page
   */
@@ -56,10 +60,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules:
-    process.env.NODE_ENV === 'development'
-      ? ['@nuxtjs/axios', '@nuxtjs/dotenv']
-      : ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
   /*
   ** Axios module configuration
   */
@@ -91,6 +92,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      config.APII_URL = 'APPURL'
       // Run ESLint on save
       // if (ctx.isDev && ctx.isClient) {
       //   config.module.rules.push({
