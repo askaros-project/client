@@ -11,11 +11,6 @@
       return {
         appName: process.env.APP_NAME
       }
-    },
-    mounted() {
-      setInterval(() => {
-        console.log(process.env)
-      }, 1000)
     }
   }
 </script>
