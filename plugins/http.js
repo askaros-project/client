@@ -4,6 +4,10 @@ import { message } from 'ant-design-vue'
 
 Vue.use(VueResource)
 
+setInterval(() => {
+  console.log(100, process.env)
+}, 1200)
+
 Vue.http.options.root = process.env.API_URL
 
 if (!process.server) {
