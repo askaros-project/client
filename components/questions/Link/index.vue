@@ -8,7 +8,7 @@
     name: "q-link",
     props: {
   		question: Object,
-  		target: { type: String, default: 'blank'}
+  		target: { type: String, default: 'self'}
   	}
   }
 </script>
