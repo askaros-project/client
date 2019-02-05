@@ -9,7 +9,7 @@
     name: "logo",
     data() {
       return {
-        appName: process.env.OPP
+        appName: process.env.APP_NAME
       }
     }
   }

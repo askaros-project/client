@@ -3,9 +3,17 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
-  env: {
-    OPP: 'OPP'
-  },
+  /** Forwarding env vars from heroku config vars **/
+  env:
+    process.env.NODE_ENV === 'production'
+      ? {
+          APP_NAME: process.env.APP_NAME,
+          API_URL: process.env.API_URL,
+          FB_APP_ID: process.env.FB_APP_ID,
+          GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+          SITE_URL: process.env.SITE_URL
+        }
+      : {},
 
   /*
   ** Headers of the page
