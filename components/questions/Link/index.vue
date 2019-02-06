@@ -16,6 +16,5 @@
 <style lang="less" scoped>
   .qlink {
     display: inline-block;
-    margin-bottom: 15px;
   }
 </style>

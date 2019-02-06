@@ -2,14 +2,12 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { message } from 'ant-design-vue'
 
-Vue.use(VueResource)
+export default ({ app }) => {
+  Vue.use(VueResource)
 
-Vue.http.options.root = process.env.API_URL
+  Vue.http.options.root = process.env.API_URL
 
-if (!process.server) {
   const requestMap = {}
-  const Cookie = require('js-cookie')
-  const authToken = Cookie.get('auth_token')
 
   Vue.http.interceptors.push((request, next) => {
     let key
@@ -27,33 +25,41 @@ if (!process.server) {
       }
     }
 
-    if (authToken) {
-      request.headers.set('Authorization', `JWT ${authToken}`)
+    if (app.$cookies.get('auth_token')) {
+      request.headers.set(
+        'Authorization',
+        `JWT ${app.$cookies.get('auth_token')}`
+      )
     }
     next(response => {
       // delete current request in the map
       if (key) {
         delete requestMap[key]
       }
-      if (response.status === 401) {
-        message.error('Unauthorized')
-        if (authToken) {
-          Cookie.set('auth_token', '')
-          window.location.reload()
-        } else {
-          window.location = '/'
-        }
+      if (response.status === 401 && app.$cookies.get('auth_token')) {
+        app.$cookies.set('auth_token', '')
+      }
+      if (process.server) {
         return
       }
+
+      if (response.status === 401) {
+        message.error('Unauthorized')
+        window.location = '/'
+        return
+      }
+
       if (response.status === 403) {
         message.error('Forbidden')
         window.location = '/'
         return
       }
+
       if (response.status === 404) {
         message.error('Not found')
         return
       }
+
       if (response.status === 500) {
         if (response.body && response.body.error && response.body.error.type) {
           message.error(response.body.error.type)

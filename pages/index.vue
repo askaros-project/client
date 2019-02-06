@@ -21,25 +21,40 @@
     <Builder></Builder>
     <div style="padding: 0 10px;">
       <h1>Trending questions</h1>
-      <Collection type="trending"></Collection>
+      <Collection :items="trendingCollection"></Collection>
       <h1>Newest questions</h1>
-      <Collection type="newest"></Collection>
+      <Collection :items="newestCollection"></Collection>
       <h1>Unexpected questions</h1>
-      <Collection type="unexpected"></Collection>
+      <Collection :items="unexpectedCollection"></Collection>
       <h1>Random questions</h1>
-      <Collection type="random"></Collection>
+      <Collection :items="randomCollection"></Collection>
     </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import * as Promise from 'bluebird'
   import Builder from "~/components/questions/Builder"
   import Collection from "~/components/questions/Collection"
+  import { TAG_UNEXPECTED } from '~/constants'
 
   export default {
     name: "home",
     layout: 'default/index',
-    components: { Builder, Collection }
+    components: { Builder, Collection },
+    asyncData: ({ params, error }) => {
+      return Promise.all([
+        Vue.http.get('questions/collection/trending').then((resp) => resp.body.questions),
+        Vue.http.get('questions/collection/newest').then((resp) => resp.body.questions),
+        Vue.http.get('questions/collection/tag?code=' + TAG_UNEXPECTED).then((resp) => resp.body.questions),
+        Vue.http.get('questions/collection/random').then((resp) => resp.body.questions)
+      ]).then(([trendingCollection, newestCollection, unexpectedCollection, randomCollection]) => {
+        return {trendingCollection, newestCollection, unexpectedCollection, randomCollection}
+      }).catch((e) => {
+        error({ statusCode: 404, message: 'Question not found' })
+      })
+    }
 }
 </script>
 

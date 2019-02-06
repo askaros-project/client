@@ -68,7 +68,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'cookie-universal-nuxt'],
   /*
   ** Axios module configuration
   */

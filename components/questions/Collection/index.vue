@@ -1,10 +1,10 @@
 <template>
   <ul class="q-collection">
-    <li v-for="item in items">
+    <li v-for="item in models">
       <Link :question="item" target="self"></Link>
       <VoteButton :question="item" size="small"></VoteButton>
     </li>
-    <EmptyListMessage v-if="isFetched && items.length === 0"></EmptyListMessage>
+    <EmptyListMessage v-if="models.length === 0"></EmptyListMessage>
   </ul>
 </template>
 
@@ -20,31 +20,14 @@
     name: "q-collection",
     components: { VoteButton, EmptyListMessage, Link },
     props: {
-      type: String
+      items: Array, default: []
     },
-    data() {
+    data(){
       return {
-        items:[],
-        isFetched: false
-      }
-    },
-    mounted() {
-      let type = this.type, params = {}
-      if (type === 'unexpected') {
-        type = 'tag'
-        params.code = TAG_UNEXPECTED
-      }
-      this.$http.get('questions/collection/' + type + '?' + queryString.stringify(params))
-      .then((resp) => {
-        this.isFetched = true
-        let models = _.map(resp.body.questions, (data) => {
-          return new QuestionModel(data)
+        models: _.map(this.items, (item) => {
+          return new QuestionModel(item)
         })
-        this.items = models
-      })
-    },
-    methods: {
-      
+      }
     }
   }
 </script>
