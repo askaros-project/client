@@ -1,67 +1,64 @@
 <template>
 	<div class="profile-page">
-		<div v-if="account.model && account.model.isFetched && !isEdit" class="user-info">
-			<ul>
-				<li><label>Name:</label> {{ account.model.user.username }}</li>
-				<li>
-					<label>Location:</label>
-					<span v-if="account.model.user.place">{{account.model.user.place.formatted_address}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-				<li>
-					<label>Birth year:</label>
-					<span v-if="account.model.user.birthyear">{{account.model.user.birthyear}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-				<li>
-					<label>Sex:</label>
-					<span v-if="account.model.user.sex">{{$messages.SEX[account.model.user.sex]}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-				<li>
-					<label>Education:</label>
-					<span v-if="account.model.user.education">{{$messages.EDUCATION[account.model.user.education]}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-				<li>
-					<label>Income:</label>
-					<span v-if="account.model.user.income">{{$messages.INCOME[account.model.user.income]}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-				<li>
-					<label>Description:</label>
-					<span v-if="account.model.user.descr">{{account.model.user.descr}}</span>
-					<span v-else class="empty-value">not set</span>
-				</li>
-			</ul>
-			<a-button @click="toggleEdit">Edit</a-button>
-		</div>
-		<Editor
-			v-if="isEdit"
-			v-on:cancel="toggleEdit"
-			v-on:save="handleSave"></Editor>
-		<Questions v-show="account.model && account.model.isFetched && !isEdit"></Questions>
+		<NoSSR>
+			<div v-if="$mobx.account.isFetched && !isEdit" class="user-info">
+				<ul>
+					<li><label>Name:</label> {{ $mobx.account.user.username }}</li>
+					<li>
+						<label>Location:</label>
+						<span v-if="$mobx.account.user.place">{{$mobx.account.user.place.formatted_address}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+					<li>
+						<label>Birth year:</label>
+						<span v-if="$mobx.account.user.birthyear">{{$mobx.account.user.birthyear}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+					<li>
+						<label>Sex:</label>
+						<span v-if="$mobx.account.user.sex">{{$messages.SEX[$mobx.account.user.sex]}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+					<li>
+						<label>Education:</label>
+						<span v-if="$mobx.account.user.education">{{$messages.EDUCATION[$mobx.account.user.education]}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+					<li>
+						<label>Income:</label>
+						<span v-if="$mobx.account.user.income">{{$messages.INCOME[$mobx.account.user.income]}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+					<li>
+						<label>Description:</label>
+						<span v-if="$mobx.account.user.descr">{{$mobx.account.user.descr}}</span>
+						<span v-else class="empty-value">not set</span>
+					</li>
+				</ul>
+				<a-button @click="toggleEdit">Edit</a-button>
+			</div>
+			<Editor
+				v-if="isEdit"
+				v-on:cancel="toggleEdit"
+				v-on:save="handleSave"></Editor>
+			<Questions v-show="!isEdit && $mobx.account.isFetched"></Questions>
+		</NoSSR>
 	</div>
 </template>
 
 <script>
 	import { observer } from "mobx-vue"
+	import NoSSR from 'vue-no-ssr'
   import Spin from "~/components/shared/Spin"
   import Editor from '~/components/profile/Editor'
   import Questions from '~/components/profile/Questions'
   import { message } from "ant-design-vue"
   export default observer({
-  	components: { Spin, Editor, Questions },
+  	components: { NoSSR, Spin, Editor, Questions },
   	data() {
   		return {
-  			account: {
-  				model: null
-  			},
   			isEdit: false
   		}
-  	},
-  	mounted() {
-  		this.account.model = this.$mobx.account
   	},
   	methods: {
   		toggleEdit() {

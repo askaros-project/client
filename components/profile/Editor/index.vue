@@ -22,7 +22,7 @@
       :wrapper-col="{ span: 18 }"
     >
     	<LocationAutocomplete
-    		:default-value="user.place ? user.place.formatted_address : ''"
+    		:default-value="$mobx.account.user.place ? $mobx.account.user.place.formatted_address : ''"
     		v-on:change="handlePlaceChange"></LocationAutocomplete>
     </a-form-item>
     <a-form-item
@@ -137,7 +137,6 @@ export default {
   components: { LocationAutocomplete },
   data () {
     return {
-    	user: this.$mobx.account.user,
       formLayout: 'horizontal',
       form: this.$form.createForm(this, {
       	mapPropsToFields: () => {
@@ -192,7 +191,7 @@ export default {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-        	this.$emit('save', {...values, place: this.changedPlace || this.user.place})
+        	this.$emit('save', {...values, place: this.changedPlace || this.$mobx.account.user.place})
         }
       })
     },
