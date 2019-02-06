@@ -18,14 +18,14 @@
 		<CommentsPanel
 			v-if="isCommentsVisible"
 			:question="model"></CommentsPanel>
-		<div>
+		<div style="min-height: 326px;">
 			<h2>Sentiment</h2>
 			<NoSSR>
 				<SentimentChart :question="model"></SentimentChart>
 			</NoSSR>
 		</div>
-		<div>
-			<h2>Stats</h2>
+		<div style="min-height: 326px;">
+			<h2 style="margin-top: 5px;">Stats</h2>
 			<NoSSR>
 				<StatsChart :question="model"></StatsChart>
 			</NoSSR>
@@ -106,7 +106,7 @@
 		margin: 10px auto 0 auto;
 
 		h2 {
-			margin: 45px 0 30px 0;
+			margin: 50px 0 30px 0;
 		}
 
 		.title-wrap {

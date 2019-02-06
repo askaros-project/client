@@ -305,6 +305,7 @@
       }
       ul {
         margin-top: 20px;
+        font-size: 16px;
       }
       li {
         margin: 10px 0;
