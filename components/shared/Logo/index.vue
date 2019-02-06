@@ -27,5 +27,6 @@
     font-size: 24px;
     font-style: italic;
     cursor: pointer;
+    user-select: none;
 }
 </style>

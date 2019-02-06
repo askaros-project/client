@@ -1,6 +1,6 @@
 <template>
 	<a-layout-header class="main-layout-header">
-		<nuxt-link to="/"><logo></logo></nuxt-link>
+		<nuxt-link to="/" style="text-decoration: none;"><logo></logo></nuxt-link>
 		<ul class="controls">
 			<li>
 				<SearchField></SearchField>
