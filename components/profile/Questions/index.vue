@@ -78,6 +78,9 @@
 
 		ul {
 			padding: 10px 0;
+			li {
+				margin-bottom: 15px;
+			}
 		}
 	}
 </style>

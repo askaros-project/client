@@ -296,6 +296,7 @@
       height: 270px;
     }
     .type-selector {
+      font-size: 14px;
       width: 150px;
       padding: 0px 0 0 0px;
       > span {

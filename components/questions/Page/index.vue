@@ -1,36 +1,38 @@
 <template>
 	<div class="question-page">
-		<div v-if="q.model.isFetched">
-			<div class="title-wrap">
-				<h1>
-					{{ q.model.title }}
-				</h1>
-				<VoteButton :question="q.model" style="margin: 10px 0;"></VoteButton>
-			</div>
-			<div class="controls-wrap">
-				<MarksPanel :question="q.model"></MarksPanel>
-				<ControlsPanel :question="q.model" :toggle-comments="toggleCommentsVisible"></ControlsPanel>
-			</div>
-			<div class="separator"></div>
-			<h2>Tag the result</h2>
-			<TagsPanel
-				:question="q.model"
-				v-on:tag="onTag"></TagsPanel>
+		<div class="title-wrap">
+			<h1>
+				{{ model.title }}
+			</h1>
+			<VoteButton :question="model" style="margin: 10px 0;"></VoteButton>
 		</div>
+		<div class="controls-wrap">
+			<MarksPanel :question="model"></MarksPanel>
+			<ControlsPanel :question="model" :toggle-comments="toggleCommentsVisible"></ControlsPanel>
+		</div>
+		<div class="separator"></div>
+		<h2>Tag the result</h2>
+		<TagsPanel
+			:question="model"
+			v-on:tag="onTag"></TagsPanel>
 		<CommentsPanel
 			v-if="isCommentsVisible"
-			:question="q.model"></CommentsPanel>
-		<div v-if="q.model.isFetched">
+			:question="model"></CommentsPanel>
+		<div>
 			<h2>Sentiment</h2>
-			<SentimentChart :question="q.model"></SentimentChart>
+			<NoSSR>
+				<SentimentChart :question="model"></SentimentChart>
+			</NoSSR>
 		</div>
-		<div v-if="q.model.isFetched">
+		<div>
 			<h2>Stats</h2>
-			<StatsChart :question="q.model"></StatsChart>
+			<NoSSR>
+				<StatsChart :question="model"></StatsChart>
+			</NoSSR>
 		</div>
-		<div v-if="q.model.isFetched">
+		<div>
 			<h2>Related questions</h2>
-			<Related :question="q.model"></Related>
+			<Related :question="model"></Related>
 			<h2>Have a question? <a @click="toggleBuilderVisible">Ask here :)</a></h2>
 		</div>
 		<Builder
@@ -38,44 +40,40 @@
 			style="max-width: 600px; margin: 60px auto;"
 			:autofocus="true"
 			v-on:success="handleQuestionBuildSuccess"></Builder>
-		<Spin v-if="!q.model.isFetched && q.model.isPending"></Spin>
 	</div>
 </template>
 
 <script>
 	import { observer } from "mobx-vue"
 	import { Question as QuestionModel } from '~/models/Question'
-	import moment from 'moment'
-	import { message } from "ant-design-vue"
-	import Spin from "~/components/shared/Spin"
-	import VoteButton from "~/components/questions/VoteButton"
+	import NoSSR from 'vue-no-ssr'
 	import Builder from "~/components/questions/Builder"
-	import TagsPanel from "~/components/questions/TagsPanel"
-	import ControlsPanel from "~/components/questions/ControlsPanel"
-	import MarksPanel from "~/components/questions/MarksPanel"
-	import CommentsPanel from "~/components/questions/CommentsPanel"
-	import Related from "~/components/questions/Related"
-	import SentimentChart from "~/components/questions/SentimentChart"
-	import StatsChart from "~/components/questions/StatsChart"
+	import VoteButton from "~/components/questions/VoteButton"
+	import TagsPanel from "./TagsPanel"
+	import ControlsPanel from "./ControlsPanel"
+	import MarksPanel from "./MarksPanel"
+	import CommentsPanel from "./CommentsPanel"
+	import SentimentChart from "./SentimentChart"
+	import StatsChart from "./StatsChart"
+	import Related from "./Related"
 
   export default observer({
   	name: 'QuestionPage',
   	components: {
-  		Spin, VoteButton, Builder, TagsPanel, ControlsPanel,
-  		MarksPanel, CommentsPanel, Related, SentimentChart, StatsChart
+  		NoSSR,
+  		VoteButton, TagsPanel, ControlsPanel, MarksPanel, CommentsPanel,
+  		SentimentChart, StatsChart, Related, Builder
   	},
   	props: {
   		questionData: Object, default: null
   	},
   	data() {
-  		console.log(this.questionData)
   		return {
-  			q: {model: new QuestionModel(this.questionData)},
-		  	isCommentsVisible: false,
-		  	isBuilderVisible: false
+  			model: new QuestionModel(this.questionData),
+  			isCommentsVisible: false,
+  			isBuilderVisible: false
   		}
-  	},
-
+		},
 		methods: {
 			onTag(code) {
 				this.q.model.tag(code, {detailed: true}).then(() => {

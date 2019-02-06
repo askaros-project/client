@@ -4,7 +4,7 @@
 
 <script>
 	import { Question as QuestionModel } from '~/models/Question'
-	import Page from "~/components/questions/Page2"
+	import Page from "~/components/questions/Page"
 
   export default {
   	name: 'QuestionPageWrap',
