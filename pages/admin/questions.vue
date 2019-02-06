@@ -42,7 +42,7 @@
       </div>
     </template>	    
     <template slot="user" slot-scope="user">
-      <router-link :to="'/admin/users?uid='+user._id" >{{ user.username }}</router-link>
+      <router-link :to="'/admin?uid='+user._id" >{{ user.username }}</router-link>
     </template>
     <template slot="number" slot-scope="number">
       {{ number ? number : '-' }}
