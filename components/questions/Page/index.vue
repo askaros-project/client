@@ -46,6 +46,7 @@
 <script>
 	import { observer } from "mobx-vue"
 	import { Question as QuestionModel } from '~/models/Question'
+	import { message } from 'ant-design-vue'
 	import NoSSR from 'vue-no-ssr'
 	import Builder from "~/components/questions/Builder"
 	import VoteButton from "~/components/questions/VoteButton"
