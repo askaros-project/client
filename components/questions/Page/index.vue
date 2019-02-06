@@ -76,7 +76,7 @@
 		},
 		methods: {
 			onTag(code) {
-				this.q.model.tag(code, {detailed: true}).then(() => {
+				this.model.tag(code, {detailed: true}).then(() => {
 	  			message.success('Successfully!')
 	  		})
 			},
