@@ -2,8 +2,6 @@ import Vue from 'vue'
 import { observable, computed, action } from 'mobx'
 import { User } from './User'
 
-const Cookie = process.client ? require('js-cookie') : undefined
-
 let gapiOauth2
 
 export class Account {
@@ -11,9 +9,10 @@ export class Account {
 	@observable isFetched = false
 	@observable isAdmin = false
 	@observable user = null
-	@observable token = Cookie ? Cookie.get('auth_token') : ''
+	@observable token = ''
 
-	constructor() {
+	constructor(token = '') {
+		this.token = token
 		this.user = new User()
 	}
 
@@ -29,9 +28,9 @@ export class Account {
 			.get('account')
 			.then(resp => {
 				this.isPending = false
-				if (resp.body.success) {
-					this.isAdmin = resp.body.account.isAdmin
-					this.user.update(resp.body.account.user)
+				if (resp.data.success) {
+					this.isAdmin = resp.data.account.isAdmin
+					this.user.update(resp.data.account.user)
 					this.isFetched = true
 				}
 			})
@@ -63,8 +62,8 @@ export class Account {
 			.post('account/email/login', { email, password })
 			.then(resp => {
 				this.isPending = false
-				if (resp.body.success) {
-					this.login(resp.body.token)
+				if (resp.data.success) {
+					this.login(resp.data.token)
 				}
 			})
 			.catch(() => {
@@ -85,8 +84,8 @@ export class Account {
 						})
 						.then(resp => {
 							this.isPending = false
-							if (resp.body.success) {
-								this.login(resp.body.token)
+							if (resp.data.success) {
+								this.login(resp.data.token)
 							}
 						})
 						.catch(() => {
@@ -113,8 +112,8 @@ export class Account {
 				})
 				.then(resp => {
 					this.isPending = false
-					if (resp.body.success) {
-						this.login(resp.body.token)
+					if (resp.data.success) {
+						this.login(resp.data.token)
 					}
 				})
 				.catch(() => {
@@ -130,11 +129,11 @@ export class Account {
 			.post('account/twitter/login', { oauth_token, oauth_verifier })
 			.then(resp => {
 				this.isPending = false
-				if (resp.body.success) {
-					if (resp.body.redirect) {
-						window.location = resp.body.redirect
-					} else if (resp.body.token) {
-						this.login(resp.body.token)
+				if (resp.data.success) {
+					if (resp.data.redirect) {
+						window.location = resp.data.redirect
+					} else if (resp.data.token) {
+						this.login(resp.data.token)
 					}
 				}
 			})
@@ -146,14 +145,16 @@ export class Account {
 	@action
 	login(token) {
 		this.token = token
-		Cookie.set('auth_token', token)
-		window.location.reload()
+		setTimeout(() => {
+			window.location.reload()
+		}, 0)
 	}
 
 	@action
 	logout() {
 		this.token = ''
-		Cookie.set('auth_token', '')
-		window.location = '/'
+		setTimeout(() => {
+			window.location = '/'
+		}, 0)
 	}
 }

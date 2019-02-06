@@ -38,7 +38,7 @@ export class User {
 			})
 			.then(resp => {
 				this.isPending = false
-				this.update(resp.body.user)
+				this.update(resp.data.user)
 			})
 			.catch(err => {
 				this.isPending = false

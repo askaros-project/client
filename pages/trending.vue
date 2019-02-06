@@ -44,8 +44,8 @@
 				.then((resp) => {
 					this.isFetching = false
 					this.isFetched = true
-					this.isNoMoreItems = resp.body.questions.length === 0
-					this.items = _.map(resp.body.questions, (data) => new QuestionModel(data))
+					this.isNoMoreItems = resp.data.questions.length === 0
+					this.items = _.map(resp.data.questions, (data) => new QuestionModel(data))
 				}).catch(() => {
 					this.isFetching = false
 				})
@@ -63,8 +63,8 @@
 					+ queryString.stringify({ limit: this.limit, offset: this.items.length }))
 					.then(resp => {
 						this.isLoadingMore = false
-						this.isNoMoreItems = resp.body.questions.length === 0
-						this.items = [].concat(this.items, _.map(resp.body.questions, (data) => new QuestionModel(data)))
+						this.isNoMoreItems = resp.data.questions.length === 0
+						this.items = [].concat(this.items, _.map(resp.data.questions, (data) => new QuestionModel(data)))
 					})
 					.catch(() => {
 						this.isLoadingMore = false

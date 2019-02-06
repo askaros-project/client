@@ -162,9 +162,9 @@ export default {
 			this.$http.get('admin/questions?' + queryString.stringify(params))
 				.then((resp) => {
 					this.isPending = false
-					this.data = resp.body.questions
+					this.data = resp.data.questions
 					const pagination = { ...this.pagination };
-        	pagination.total = resp.body.total
+        	pagination.total = resp.data.total
         	this.pagination = pagination
 				})
 				.catch(() => {

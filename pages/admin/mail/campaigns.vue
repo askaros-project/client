@@ -112,7 +112,7 @@ export default {
 			this.$http.get('admin/mail_campaigns')
 				.then((resp) => {
 					this.isPending = false
-					this.data = resp.body.campaigns
+					this.data = resp.data.campaigns
 				})
 				.catch(() => {
 					this.isPending = false

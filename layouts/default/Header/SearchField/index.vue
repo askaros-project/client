@@ -60,7 +60,7 @@ export default {
 			this.$http.get('questions/search?' + queryString.stringify({search: this.value}))
 				.then((resp) => {
 					if (this.value) {
-						this.items = resp.body.questions
+						this.items = resp.data.questions
 						this.isResultsVisible = true
 					}
 				})

@@ -76,8 +76,8 @@
 				.then(resp => {
 					this.isFetching = false
 					this.isFetched = true
-					this.items = resp.body.items
-					this.pagination.total = resp.body.count
+					this.items = resp.data.items
+					this.pagination.total = resp.data.count
 					this.$mobx.ui.activityCounter.update()
 				})
 				.catch(() => {
@@ -95,7 +95,7 @@
 					}))
 					.then(resp => {
 						this.isLoadingMore = false
-						this.items = [].concat(this.items, resp.body.items)
+						this.items = [].concat(this.items, resp.data.items)
 					})
 					.catch(() => {
 						this.isLoadingMore = false

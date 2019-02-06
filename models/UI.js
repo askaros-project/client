@@ -1,14 +1,14 @@
-import Vue from "vue"
-import { observable, computed, action } from "mobx"
-import { Question as QuestionModel } from "./Question"
+import Vue from 'vue'
+import { observable, computed, action } from 'mobx'
+import { Question as QuestionModel } from './Question'
 
 class LoginModal {
-	@observable mode = "signin"
+	@observable mode = 'signin'
 	@observable visible = false
 	forceEmailView = false
 
 	@action
-	show(mode = "signin", forceEmailView = false) {
+	show(mode = 'signin', forceEmailView = false) {
 		this.mode = mode
 		this.forceEmailView = forceEmailView
 		this.visible = true
@@ -30,8 +30,8 @@ class ActivityCounter {
 
 	@action
 	update() {
-		Vue.http.get("activity/count").then(resp => {
-			this.value = resp.body.count
+		Vue.http.get('activity/count').then(resp => {
+			this.value = resp.data.count
 		})
 	}
 }

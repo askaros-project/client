@@ -116,7 +116,7 @@
             this.keywords = []
             this.$mobx.ui.activityCounter.update()
             message.success('Question posted!')
-            this.$router.push('/q/' + resp.body.question.uri)
+            this.$router.push('/q/' + resp.data.question.uri)
             this.$emit('success')
           })
         } else {

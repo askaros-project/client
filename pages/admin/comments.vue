@@ -186,9 +186,9 @@ export default {
 			this.$http.get('admin/comments?' + queryString.stringify(params))
 				.then((resp) => {
 					this.isPending = false
-					this.data = resp.body.comments
+					this.data = resp.data.comments
 					const pagination = { ...this.pagination };
-        	pagination.total = resp.body.total
+        	pagination.total = resp.data.total
         	this.pagination = pagination
 				})
 				.catch(() => {

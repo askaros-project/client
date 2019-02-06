@@ -107,7 +107,7 @@
 
       fetch() {
         this.$http.get('questions/' + this.question._id + '/votes').then((resp) => {
-          this.votesItems = resp.body.votes
+          this.votesItems = resp.data.votes
           // this.votes = generateTestData()
         })
       },

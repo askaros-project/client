@@ -8,22 +8,22 @@
 			<li>
 				<nuxt-link to="/trending">Trending</nuxt-link>
 			</li>
-			<li v-if="!$store.state.isLoggedIn">
+			<li v-if="!$mobx.account.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">
 					Sign in
 				</a>
 			</li>
-			<li v-if="!$store.state.isLoggedIn">
+			<li v-if="!$mobx.account.isLoggedIn">
 				<a-button @click="showSignUpModal">
 					Get started
 				</a-button>
 			</li>
-			<li v-if="$store.state.isLoggedIn">
+			<li v-if="$mobx.account.isLoggedIn">
 				<nuxt-link to="/activity">Activity
 					<a-badge :count="activityCounter.value"></a-badge>
 				</nuxt-link>
 			</li>
-			<li v-if="$store.state.isLoggedIn">
+			<li v-if="$mobx.account.isLoggedIn">
 				<ProfileButton></ProfileButton>
 			</li>
 		</ul>
@@ -45,7 +45,7 @@ import ProfileButton from './ProfileButton'
     activityCounter = this.$mobx.ui.activityCounter
     
 	  mounted() {
-	  	if (this.$store.state.isLoggedIn) {
+	  	if (this.$mobx.account.isLoggedIn) {
 	  		this.$mobx.ui.activityCounter.update()
 	  	}
 	  }

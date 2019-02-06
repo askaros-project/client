@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { message } from 'ant-design-vue'
+import { AUTH_TOKEN_COOKIE_NAME } from '~/constants'
 
 export default ({ app }) => {
   Vue.use(VueResource)
@@ -25,19 +26,20 @@ export default ({ app }) => {
       }
     }
 
-    if (app.$cookies.get('auth_token')) {
+    if (app.$cookies.get(AUTH_TOKEN_COOKIE_NAME)) {
       request.headers.set(
         'Authorization',
-        `JWT ${app.$cookies.get('auth_token')}`
+        `JWT ${app.$cookies.get(AUTH_TOKEN_COOKIE_NAME)}`
       )
     }
+
     next(response => {
       // delete current request in the map
       if (key) {
         delete requestMap[key]
       }
-      if (response.status === 401 && app.$cookies.get('auth_token')) {
-        app.$cookies.set('auth_token', '')
+      if (response.status === 401 && app.$cookies.get(AUTH_TOKEN_COOKIE_NAME)) {
+        app.$cookies.remove(AUTH_TOKEN_COOKIE_NAME)
       }
       if (process.server) {
         return

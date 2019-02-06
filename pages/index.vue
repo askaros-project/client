@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <div v-if="!$store.state.isLoggedIn">
+    <div v-if="!$mobx.account.isLoggedIn">
       <h1>The service WHY</h1>
       <div class="list-wrap">
       <ul>
@@ -17,7 +17,7 @@
     </div>
     </div>
     <h1>
-      <span v-if="!$store.state.isLoggedIn">Ask a question</span></h1>
+      <span v-if="!$mobx.account.isLoggedIn">Ask a question</span></h1>
     <Builder></Builder>
     <div style="padding: 0 10px;">
       <h1>Trending questions</h1>
@@ -45,14 +45,14 @@
     components: { Builder, Collection },
     asyncData: ({ params, error }) => {
       return Promise.all([
-        Vue.http.get('questions/collection/trending').then((resp) => resp.body.questions),
-        Vue.http.get('questions/collection/newest').then((resp) => resp.body.questions),
-        Vue.http.get('questions/collection/tag?code=' + TAG_UNEXPECTED).then((resp) => resp.body.questions),
-        Vue.http.get('questions/collection/random').then((resp) => resp.body.questions)
+        Vue.http.get('questions/collection/trending').then((resp) => resp.data.questions),
+        Vue.http.get('questions/collection/newest').then((resp) => resp.data.questions),
+        Vue.http.get('questions/collection/tag?code=' + TAG_UNEXPECTED).then((resp) => resp.data.questions),
+        Vue.http.get('questions/collection/random').then((resp) => resp.data.questions)
       ]).then(([trendingCollection, newestCollection, unexpectedCollection, randomCollection]) => {
         return {trendingCollection, newestCollection, unexpectedCollection, randomCollection}
       }).catch((e) => {
-        error({ statusCode: 404, message: 'Question not found' })
+        error({ statusCode: 500, message: 'Some error occured' })
       })
     }
 }

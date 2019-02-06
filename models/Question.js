@@ -108,7 +108,7 @@ class QuestionComments {
 			.get('comments/' + this.question._id)
 			.then(resp => {
 				this.isLoading = false
-				this.update(resp.body)
+				this.update(resp.data)
 			})
 			.catch(err => {
 				this.isLoading = false
@@ -127,7 +127,7 @@ class QuestionComments {
 			})
 			.then(resp => {
 				this.isPending = false
-				this.items = [].concat(this.items, resp.body.comment)
+				this.items = [].concat(this.items, resp.data.comment)
 			})
 			.catch(err => {
 				this.isPending = false
@@ -143,8 +143,8 @@ class QuestionComments {
 			.then(resp => {
 				this.isPending = false
 				this.items = _.map(this.items, item => {
-					if (item._id === resp.body.comment._id) {
-						return resp.body.comment
+					if (item._id === resp.data.comment._id) {
+						return resp.data.comment
 					} else {
 						return item
 					}
@@ -197,10 +197,10 @@ export class Question {
 			.get(`questions/${uri}?${detailed ? 'detailed=true' : ''}`)
 			.then(resp => {
 				this.isPending = false
-				this.update(resp.body.question)
+				this.update(resp.data.question)
 				this.isFetched = true
-				return Promise.resolve(resp.body.question)
-				return resp.body.question
+				return Promise.resolve(resp.data.question)
+				return resp.data.question
 			})
 			.catch(err => {
 				this.isPending = false
@@ -217,7 +217,7 @@ export class Question {
 			})
 			.then(resp => {
 				this.isPending = false
-				this.update(resp.body.question)
+				this.update(resp.data.question)
 			})
 			.catch(err => {
 				this.isPending = false
@@ -234,7 +234,7 @@ export class Question {
 			})
 			.then(resp => {
 				this.isPending = false
-				this.update(resp.body.question)
+				this.update(resp.data.question)
 			})
 			.catch(err => {
 				this.isPending = false
@@ -251,7 +251,7 @@ export class Question {
 			})
 			.then(resp => {
 				this.isPending = false
-				this.update(resp.body.question)
+				this.update(resp.data.question)
 			})
 			.catch(err => {
 				this.isPending = false

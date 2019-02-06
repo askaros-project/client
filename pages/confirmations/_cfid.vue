@@ -32,7 +32,7 @@ export default {
 		this.$http.post('account/email/confirmation/' + this.$route.params.cfid)
 			.then((resp) => {
 				this.isPending = false
-				if (resp.body.success) {
+				if (resp.data.success) {
 					this.isConfirmed = true
 				} else {
 					this.isError = true

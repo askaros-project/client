@@ -1,3 +1,5 @@
+export const AUTH_TOKEN_COOKIE_NAME = 'auth_token'
+
 export const VOTE_YES = 1
 export const VOTE_NO = 2
 

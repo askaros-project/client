@@ -48,10 +48,10 @@
 				})).then((resp) => {
 					this.isLoading = false
 					this.isFetched = true
-					this.items = resp.body.questions
+					this.items = resp.data.questions
 					this.pagination = {
 						...this.pagination,
-						total: resp.body.count
+						total: resp.data.count
 					}
 				}).catch(() => {
 					this.isLoading = false

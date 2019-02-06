@@ -27,7 +27,7 @@
     mounted() {
       this.$http.get(`questions/collection/related?qid=${this.question._id}`).then((resp) => {
         this.isFetched = true
-        this.items = _.map(resp.body.questions, (data) => {
+        this.items = _.map(resp.data.questions, (data) => {
           return new QuestionModel(data)
         })
       })

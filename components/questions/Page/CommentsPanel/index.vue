@@ -1,6 +1,6 @@
 <template>
 	<div class="comments">
-		<Editor v-if="isLoggedIn" v-on:submit="handleAdd"></Editor>
+		<Editor v-if="$mobx.account.isLoggedIn" v-on:submit="handleAdd"></Editor>
 		<div v-else class="login-text">
 			<a @click="handleLogin">Log in here </a> to leave a comment
 		</div>
@@ -64,12 +64,6 @@
   	
 		mounted() {
 			this.question.comments.load()
-		},
-
-		computed: {
-			isLoggedIn() {
-				return this.$store.state.isLoggedIn
-			}
 		},
 
 		methods: {

@@ -41,25 +41,25 @@
 </template>
 
 <script>
-export default {
-  name: "signin-email-form",
-  data () {
-    return {
-      formLayout: 'horizontal',
-      form: this.$form.createForm(this)
-    }
-  },
-  methods: {
-    handleSubmit (e) {
-      e.preventDefault()
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          this.$mobx.account.loginByEmail(values)
-        }
-      })
+  export default {
+    name: "signin-email-form",
+    data () {
+      return {
+        formLayout: 'horizontal',
+        form: this.$form.createForm(this)
+      }
+    },
+    methods: {
+      handleSubmit (e) {
+        e.preventDefault()
+        this.form.validateFields((err, values) => {
+          if (!err) {
+            this.$mobx.account.loginByEmail(values)
+          }
+        })
+      }
     }
   }
-}
 
 </script>
 

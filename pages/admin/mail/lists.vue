@@ -42,7 +42,7 @@ export default {
 			this.$http.get('admin/mail_lists')
 				.then((resp) => {
 					this.isPending = false
-					this.data = resp.body.lists
+					this.data = resp.data.lists
 				})
 				.catch(() => {
 					this.isPending = false

@@ -60,7 +60,7 @@
 
   	methods: {
   		handleMarkAsSpam() {
-				if (this.$store.state.isLoggedIn) {
+				if (this.$mobx.account.isLoggedIn) {
 	        this.question.mark(MARK_SPAM, {detailed: true}).then(() => {
 						message.success('Marked as spam!')
 					})
