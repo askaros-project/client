@@ -25,10 +25,12 @@
     VOTE_NO,
     SEX_MALE,
     SEX_FEMALE,
+    EDUCATION_LEVEL_PRIMARY_SCHOOL,
+    EDUCATION_LEVEL_SECONDARY_SCHOOL,
     EDUCATION_LEVEL_SPECIALIST,
     EDUCATION_LEVEL_BACHELOR,
     EDUCATION_LEVEL_MASTER,
-    EDUCATION_LEVEL_DOCTOR,
+    EDUCATION_LEVEL_DOCTORATE,
     INCOME_LEVEL_MIN,
     INCOME_LEVEL_MAX,
     INCOME_LEVEL_MIDDLE } from '~/constants'
@@ -36,7 +38,14 @@
   const generateTestData = () => {
     let items = []
     let countries = ['USA', 'Albania', 'Irak', 'Ukraine', 'Germany', 'Saudy', 'India', 'Morokko', 'Nepal', 'Canada', 'France','USAC', 'AlbaniaC', 'IrakC', 'UkraineC', 'GermanyC', 'SaudyC', 'IndiaC', 'MorokkoC', 'NepalC', 'CanadaC', 'FranceC']
-    let education = [EDUCATION_LEVEL_SPECIALIST, EDUCATION_LEVEL_BACHELOR, EDUCATION_LEVEL_MASTER, EDUCATION_LEVEL_DOCTOR]
+    let education = [
+      EDUCATION_LEVEL_PRIMARY_SCHOOL,
+      EDUCATION_LEVEL_SECONDARY_SCHOOL,
+      EDUCATION_LEVEL_SPECIALIST,
+      EDUCATION_LEVEL_BACHELOR,
+      EDUCATION_LEVEL_MASTER,
+      EDUCATION_LEVEL_DOCTORATE
+    ]
 
     let income = [INCOME_LEVEL_MIN, INCOME_LEVEL_MAX, INCOME_LEVEL_MIDDLE]
 
@@ -190,6 +199,12 @@
           return countries
         } else if (this.selectedType === 'education') {
           return [{
+            label: this.$messages.EDUCATION[EDUCATION_LEVEL_PRIMARY_SCHOOL],
+            type: EDUCATION_LEVEL_PRIMARY_SCHOOL
+          },{
+            label: this.$messages.EDUCATION[EDUCATION_LEVEL_SECONDARY_SCHOOL],
+            type: EDUCATION_LEVEL_SECONDARY_SCHOOL
+          },{
             label: this.$messages.EDUCATION[EDUCATION_LEVEL_SPECIALIST],
             type: EDUCATION_LEVEL_SPECIALIST
           },{
@@ -199,8 +214,8 @@
             label: this.$messages.EDUCATION[EDUCATION_LEVEL_MASTER],
             type: EDUCATION_LEVEL_MASTER
           },{
-            label: this.$messages.EDUCATION[EDUCATION_LEVEL_DOCTOR],
-            type: EDUCATION_LEVEL_DOCTOR
+            label: this.$messages.EDUCATION[EDUCATION_LEVEL_DOCTORATE],
+            type: EDUCATION_LEVEL_DOCTORATE
           }]
         } else if (this.selectedType === 'income') {
           return [{

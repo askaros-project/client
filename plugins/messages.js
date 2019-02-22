@@ -40,10 +40,12 @@ export default ({ app }, inject) => {
 		},
 
 		EDUCATION: {
+			[constants.EDUCATION_LEVEL_PRIMARY_SCHOOL]: 'Primary School',
+			[constants.EDUCATION_LEVEL_SECONDARY_SCHOOL]: 'Secondary School',
 			[constants.EDUCATION_LEVEL_SPECIALIST]: 'Specialist',
 			[constants.EDUCATION_LEVEL_BACHELOR]: 'Bachelor',
 			[constants.EDUCATION_LEVEL_MASTER]: 'Master',
-			[constants.EDUCATION_LEVEL_DOCTOR]: 'Doctor'
+			[constants.EDUCATION_LEVEL_DOCTORATE]: 'Doctorate'
 		},
 
 		INCOME: {

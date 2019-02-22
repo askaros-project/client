@@ -125,10 +125,12 @@ import LocationAutocomplete from "~/components/shared/LocationAutocomplete"
 import {
   SEX_MALE,
   SEX_FEMALE,
+  EDUCATION_LEVEL_PRIMARY_SCHOOL,
+  EDUCATION_LEVEL_SECONDARY_SCHOOL,
   EDUCATION_LEVEL_SPECIALIST,
   EDUCATION_LEVEL_BACHELOR,
   EDUCATION_LEVEL_MASTER,
-  EDUCATION_LEVEL_DOCTOR,
+  EDUCATION_LEVEL_DOCTORATE,
   INCOME_LEVEL_MIN,
   INCOME_LEVEL_MIDDLE,
   INCOME_LEVEL_MAX } from '~/constants'
@@ -167,17 +169,19 @@ export default {
         let currentYear = new Date().getFullYear()
         let result = [], min = 0
         _.times(110, (i) => result.push(currentYear - min - i))
-        return result.reverse()
+        return result
       }()),
       sexOptions: [
         { type: SEX_MALE, label: this.$messages.SEX[SEX_MALE]},
         { type: SEX_FEMALE, label: this.$messages.SEX[SEX_FEMALE]}
       ],
       educationOptions: [
+        { type: EDUCATION_LEVEL_PRIMARY_SCHOOL, label: this.$messages.EDUCATION[EDUCATION_LEVEL_PRIMARY_SCHOOL]},
+        { type: EDUCATION_LEVEL_SECONDARY_SCHOOL, label: this.$messages.EDUCATION[EDUCATION_LEVEL_SECONDARY_SCHOOL]},
         { type: EDUCATION_LEVEL_SPECIALIST, label: this.$messages.EDUCATION[EDUCATION_LEVEL_SPECIALIST]},
         { type: EDUCATION_LEVEL_BACHELOR, label: this.$messages.EDUCATION[EDUCATION_LEVEL_BACHELOR]},
         { type: EDUCATION_LEVEL_MASTER, label: this.$messages.EDUCATION[EDUCATION_LEVEL_MASTER]},
-        { type: EDUCATION_LEVEL_DOCTOR, label: this.$messages.EDUCATION[EDUCATION_LEVEL_DOCTOR]}
+        { type: EDUCATION_LEVEL_DOCTORATE, label: this.$messages.EDUCATION[EDUCATION_LEVEL_DOCTORATE]}
       ],
       incomeOptions: [
         { type: INCOME_LEVEL_MIN, label: this.$messages.INCOME[INCOME_LEVEL_MIN]},

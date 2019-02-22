@@ -27,10 +27,12 @@ export const MARK_LIKE = 2
 export const SEX_MALE = 'Male'
 export const SEX_FEMALE = 'Female'
 
+export const EDUCATION_LEVEL_PRIMARY_SCHOOL = 'PrimarySchool'
+export const EDUCATION_LEVEL_SECONDARY_SCHOOL = 'SecondarySchool'
 export const EDUCATION_LEVEL_SPECIALIST = 'Specialist'
 export const EDUCATION_LEVEL_BACHELOR = 'Bachelor'
 export const EDUCATION_LEVEL_MASTER = 'Master'
-export const EDUCATION_LEVEL_DOCTOR = 'Doctor'
+export const EDUCATION_LEVEL_DOCTORATE = 'Doctorate'
 
 export const INCOME_LEVEL_MIN = 'min'
 export const INCOME_LEVEL_MIDDLE = 'middle'
