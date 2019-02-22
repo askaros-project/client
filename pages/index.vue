@@ -59,19 +59,24 @@
       }
     },
     mounted() {
-      const layoutInnerEl = document.getElementById('__layout').children[0]
-      const isBottom = () => {
-        // console.log(layoutInnerEl.offsetHeight, document.documentElement.scrollTop, window.innerHeight)
-        return document.documentElement.scrollTop + window.innerHeight > layoutInnerEl.offsetHeight - 10
-      }
-      window.onscroll = () => {
-        if (isBottom()) this.handleSrollToBottom()
-      }
-      if (isBottom()) {
+      window.addEventListener('scroll', this.onScrollListener)
+      if (this.isBottom()) {
         this.handleSrollToBottom()
       }
     },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScrollListener)
+    },
     methods: {
+      isBottom() {
+        const layoutInnerEl = document.getElementById('__layout').children[0]
+        return document.documentElement.scrollTop + window.innerHeight > layoutInnerEl.offsetHeight - 10
+      },
+      onScrollListener() {
+        if (this.isBottom()) {
+          this.handleSrollToBottom()
+        }
+      },
       handleSrollToBottom() {
         if (this.loadMode !== 'button') {
           this.$refs.collection.fetchMore(() => {
