@@ -37,3 +37,7 @@ export const EDUCATION_LEVEL_DOCTORATE = 'Doctorate'
 export const INCOME_LEVEL_MIN = 'min'
 export const INCOME_LEVEL_MIDDLE = 'middle'
 export const INCOME_LEVEL_MAX = 'max'
+
+export const NOTIF_TYPE_TRANDING = 'tranding'
+export const NOTIF_TYPE_SOMEONE_COMMENT_YOUR_Q = 'comment_your_q'
+export const NOTIF_TYPE_SOMEONE_COMMENT_SAME_Q = 'comment_same_q'

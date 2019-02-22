@@ -52,6 +52,12 @@ export default ({ app }, inject) => {
 			[constants.INCOME_LEVEL_MIN]: 'Lower',
 			[constants.INCOME_LEVEL_MIDDLE]: 'Middle',
 			[constants.INCOME_LEVEL_MAX]: 'Upper'
+		},
+
+		NOTIF_TYPE: {
+			[constants.NOTIF_TYPE_TRANDING]: 'Tranding list (every 30 days)',
+			[constants.NOTIF_TYPE_SOMEONE_COMMENT_YOUR_Q]: 'Someone comment your question',
+			[constants.NOTIF_TYPE_SOMEONE_COMMENT_SAME_Q]: 'Someone comment same question',
 		}
 	})
 }

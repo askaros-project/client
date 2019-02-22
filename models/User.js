@@ -11,6 +11,9 @@ export class User {
 	@observable sex
 	@observable education
 	@observable income
+	
+	allowedNotif = []
+	
 	constructor(data) {
 		this.update(data)
 	}
@@ -56,5 +59,20 @@ export class User {
 		this.sex = data.sex
 		this.education = data.education
 		this.income = data.income
+		this.allowedNotif = data.allowedNotif
+	}
+
+	@action
+	sub(type) {
+		return Vue.http.post(`user/notifications/${type}`).then((resp) => {
+			this.update(resp.data.user)
+		})
+	}
+
+	@action
+	unsub(type) {
+		return Vue.http.delete(`user/notifications/${type}`).then((resp) => {
+			this.update(resp.data.user)
+		})
 	}
 }

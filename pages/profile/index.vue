@@ -41,6 +41,7 @@
 				v-if="isEdit"
 				v-on:cancel="toggleEdit"
 				v-on:save="handleSave"></Editor>
+			<Subscriptions v-if="!isEdit && $mobx.account.isFetched"></Subscriptions>
 			<Questions v-show="!isEdit && $mobx.account.isFetched"></Questions>
 		</NoSSR>
 	</div>
@@ -52,9 +53,10 @@
   import Spin from "~/components/shared/Spin"
   import Editor from '~/components/profile/Editor'
   import Questions from '~/components/profile/Questions'
+  import Subscriptions from '~/components/profile/Subscriptions'
   import { message } from "ant-design-vue"
   export default observer({
-  	components: { NoSSR, Spin, Editor, Questions },
+  	components: { NoSSR, Spin, Editor, Questions, Subscriptions },
   	data() {
   		return {
   			isEdit: false
@@ -75,7 +77,7 @@
 </script>
 
 <style lang="less" scoped>
-	@import "../vars.less";
+	@import "../../vars.less";
 
 	.profile-page {
 		@media @tabletmin {

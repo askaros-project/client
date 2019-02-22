@@ -2,6 +2,7 @@ import Vue from 'vue'
 import {
 	Badge,
 	Button,
+	Checkbox,
 	Dropdown,
 	Form,
 	Icon,
@@ -22,6 +23,7 @@ import {
 } from 'ant-design-vue'
 Vue.use(Badge)
 Vue.use(Button)
+Vue.use(Checkbox)
 Vue.use(Dropdown)
 Vue.use(Form)
 Vue.use(Icon)

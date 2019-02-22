@@ -70,6 +70,7 @@
 		margin-top: 30px;
 		position: relative;
 		min-height: 150px;
+		font-size: 14px;
 
 		h2 {
 			margin: 10px 0 10px 0;
