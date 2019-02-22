@@ -13,7 +13,7 @@
 					<a-tag v-else :color="colors[item.type]">{{ $messages.ACTIVITY[item.type] }}</a-tag>
 				</span>
 				<router-link v-if="item.question" :to="'/q/' + item.question.uri">{{item.question.title}}</router-link>
-				<span v-else>DELETED</span>
+				<span v-else class="mark-deleted">deleted</span>
 			</li>
 		</ul>
 		<EmptyListMessage v-if="isFetched && items.length === 0"></EmptyListMessage>
@@ -132,6 +132,10 @@
 						min-width: 115px;
 						display: inline-block;
 					}
+				}
+				.mark-deleted {
+					font-style: italic;
+					color: rgba(0,0,0,0.4);
 				}
 			}
 		}

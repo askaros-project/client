@@ -5,6 +5,10 @@
       <VoteButton :question="item" size="small"></VoteButton>
     </li>
     <EmptyListMessage v-if="models.length === 0"></EmptyListMessage>
+    <li class="footer-wrap">
+      <Spin v-if="isFetching" noMask class="loading" />
+      <slot name="footer"></slot>
+    </li>
   </ul>
 </template>
 
@@ -14,19 +18,46 @@
   import VoteButton from '~/components/questions/VoteButton'
   import Link from '~/components/questions/Link'
   import EmptyListMessage from '~/components/shared/EmptyListMessage'
+  import Spin from '~/components/shared/Spin'
   import queryString from 'query-string'
-  import { TAG_UNEXPECTED } from '~/constants'
   export default {
     name: "q-collection",
-    components: { VoteButton, EmptyListMessage, Link },
+    components: { VoteButton, EmptyListMessage, Link, Spin },
     props: {
-      items: Array, default: []
+      type: String,
+      pageSize: {Number, default: 15},
+      initData: {Object, default: {}}
     },
     data(){
       return {
-        models: _.map(this.items, (item) => {
+        isFetching: false,
+        total: this.initData.total,
+        page: this.initData.pageIndex || 1,
+        models: _.map(this.initData.questions, (item) => {
           return new QuestionModel(item)
         })
+      }
+    },
+    methods: {
+      hasMore() {
+        return this.total >= this.page  * this.pageSize
+      },
+      fetchMore(callback) {
+        if (!this.isFetching && this.hasMore()) {
+          this.isFetching = true
+          this.$http.get(`questions/collection/${this.type}?limit=${this.pageSize}&offset=${this.page * this.pageSize}`)
+            .then((resp) => {
+              this.page++
+              this.isFetching = false
+              this.models = [].concat(this.models, _.map(resp.data.questions, (item) => new QuestionModel(item)))
+              if (callback) {
+                callback()
+              }
+            })
+            .finally(() => {
+              this.isFetching = false
+            })
+        }
       }
     }
   }
@@ -43,6 +74,18 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      
+      &.footer-wrap {
+        position: relative;
+        padding: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .loading {
+          padding: 10px;
+        }
+      }
     }
   }
 </style>

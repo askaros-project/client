@@ -1,9 +1,10 @@
 <template>
-	<a-layout-footer class="main-layout-footer">
+	<a-layout-footer class="main-layout-footer" id="footer">
 		<ul>
-			<li><router-link to="/contacts">Contact us</router-link></li>
+			<li><router-link to="/contacts">Contact Us</router-link></li>
 			<li><router-link to="/terms">Terms and Conditions</router-link></li>
 			<li><router-link to="/about">About Us</router-link></li>
+			<li><router-link to="/collection/unexpected">Unexpected Sentiment</router-link></li>
 		</ul>
 		<SubscribeForm></SubscribeForm>
 	</a-layout-footer>
@@ -39,7 +40,8 @@ export default {
 		ul {
 			li {
 				display: inline-block;
-				margin-right: 10px;
+				margin-right: 15px;
+				padding: 5px 0;
 				@media @mobile {
 					display: block;
 		      margin-bottom: 10px;

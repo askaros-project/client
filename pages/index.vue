@@ -21,13 +21,15 @@
     <Builder></Builder>
     <div style="padding: 0 10px;">
       <h1>Trending questions</h1>
-      <Collection :items="trendingCollection"></Collection>
-      <h1>Newest questions</h1>
-      <Collection :items="newestCollection"></Collection>
-      <h1>Unexpected questions</h1>
-      <Collection :items="unexpectedCollection"></Collection>
-      <h1>Random questions</h1>
-      <Collection :items="randomCollection"></Collection>
+      <Collection
+        ref="collection"
+        type="trending"
+        :initData="collectionData">
+          <div slot="footer">
+            <a-button v-if="loadMode === 'button'" @click="loadMoreClick">Load more</a-button>
+          </div>
+        </Collection>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +39,6 @@
   import * as Promise from 'bluebird'
   import Builder from "~/components/questions/Builder"
   import Collection from "~/components/questions/Collection"
-  import { TAG_UNEXPECTED } from '~/constants'
 
   export default {
     name: "home",
@@ -45,16 +46,48 @@
     components: { Builder, Collection },
     asyncData: ({ params, error }) => {
       return Promise.all([
-        Vue.http.get('questions/collection/trending').then((resp) => resp.data.questions),
-        Vue.http.get('questions/collection/newest').then((resp) => resp.data.questions),
-        Vue.http.get('questions/collection/tag?code=' + TAG_UNEXPECTED).then((resp) => resp.data.questions),
-        Vue.http.get('questions/collection/random').then((resp) => resp.data.questions)
-      ]).then(([trendingCollection, newestCollection, unexpectedCollection, randomCollection]) => {
-        return {trendingCollection, newestCollection, unexpectedCollection, randomCollection}
+        Vue.http.get('questions/collection/trending?limit=15').then((resp) => resp.data)
+      ]).then(([collectionData]) => {
+        return {collectionData}
       }).catch((e) => {
         error({ statusCode: 500, message: 'Some error occured' })
       })
+    },
+    data() {
+      return {
+        loadMode: 'auto'
+      }
+    },
+    mounted() {
+      const layoutInnerEl = document.getElementById('__layout').children[0]
+      const isBottom = () => {
+        // console.log(layoutInnerEl.offsetHeight, document.documentElement.scrollTop, window.innerHeight)
+        return document.documentElement.scrollTop + window.innerHeight > layoutInnerEl.offsetHeight - 10
+      }
+      window.onscroll = () => {
+        if (isBottom()) this.handleSrollToBottom()
+      }
+      if (isBottom()) {
+        this.handleSrollToBottom()
+      }
+    },
+    methods: {
+      handleSrollToBottom() {
+        if (this.loadMode !== 'button') {
+          this.$refs.collection.fetchMore(() => {
+            if (this.$refs.collection.page % 3 === 0 && this.$refs.collection.hasMore()) {
+              this.loadMode = 'button'
+            }
+          })
+        }
+      },
+      loadMoreClick() {
+        this.$refs.collection.fetchMore(() => {
+          this.loadMode = 'auto'
+        })
+      }
     }
+    
 }
 </script>
 
