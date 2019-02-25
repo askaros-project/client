@@ -56,6 +56,7 @@
   import Subscriptions from '~/components/profile/Subscriptions'
   import { message } from "ant-design-vue"
   export default observer({
+  	middleware: 'redirect_if_not_auth',
   	components: { NoSSR, Spin, Editor, Questions, Subscriptions },
   	data() {
   		return {

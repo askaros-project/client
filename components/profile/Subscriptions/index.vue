@@ -3,13 +3,13 @@
 		<h2>Your subscriptions</h2>
 		<ul v-if="types.length">
 			<li v-for="type in types">
-				<span class="icon">
-					<a-icon v-if="isAllowed(type)" type="check"></a-icon>
+				<span class="icon" v-bind:class="{allowed: isAllowed(type)}">
+					<a-icon type="check"></a-icon>
 				</span>
 				<label>{{$messages.NOTIF_TYPE[type]}}</label>
 			</li>
 		</ul>
-		<nuxt-link to="/profile/subscriptions">
+		<nuxt-link to="/profile/subscriptions?from=profile">
 			<a-button>Edit</a-button>
 		</nuxt-link>
 	</div>
@@ -59,8 +59,12 @@
 				margin-bottom: 15px;
 
 				.icon {
+					opacity: 0.2;
 					min-width: 20px;
     			display: inline-block;
+    			&.allowed {
+    				opacity: 1;
+    			}
 				}
 			}
 		}

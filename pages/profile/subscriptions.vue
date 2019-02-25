@@ -1,7 +1,10 @@
 <template>
 	<div class="subscriptions-page">
 		<NoSSR>
-			<div v-if="$mobx.account.isFetched">
+			<div v-if="!$mobx.account.isLoggedIn" class="login-msg-wrap">
+				Please <a @click="handleLoginClick">login</a> to edit your subscriptions
+			</div>
+			<div v-if="$mobx.account.isLoggedIn && $mobx.account.isFetched">
 				<h2>Edit your subscriptions</h2>
 				<ul v-if="types.length">
 					<li v-for="type in types">
@@ -11,7 +14,7 @@
 						<label>{{$messages.NOTIF_TYPE[type]}}</label>
 					</li>
 				</ul>
-				<nuxt-link to="/profile">
+				<nuxt-link to="/profile" v-if="hasBackToProfileBtn">
 					<a-button>Back to profile</a-button>
 				</nuxt-link>
 			</div>
@@ -40,8 +43,12 @@
 					NOTIF_TYPE_TRANDING,
 					NOTIF_TYPE_SOMEONE_COMMENT_YOUR_Q,
 					NOTIF_TYPE_SOMEONE_COMMENT_SAME_Q
-				]
+				],
+				hasBackToProfileBtn: false
 			}
+		},
+		mounted() {
+			this.hasBackToProfileBtn = this.$route.query.from === 'profile'
 		},
 		methods: {
 			isAllowed(type) {
@@ -59,6 +66,9 @@
 				.finally(() => {
 					this.isPending = false
 				})
+			},
+			handleLoginClick() {
+				this.$mobx.ui.loginModal.show()
 			}
 		}
 	})
@@ -71,6 +81,11 @@
 			max-width: 600px;
 		}
 		margin: 0 auto;
+
+		.login-msg-wrap {
+			margin-top: 150px;
+			text-align: center;
+		}
 
 		ul {
 			margin-top: 30px;
