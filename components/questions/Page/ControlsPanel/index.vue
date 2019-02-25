@@ -30,6 +30,9 @@
 			<a-dropdown>
 				<a-icon type="ellipsis"></a-icon>
 				<a-menu slot="overlay">
+					<a-menu-item>
+		        <a @click="handleMarkAsBlockNotif">Prevent email notifications</a>
+		      </a-menu-item>
 		      <a-menu-item>
 		        <a @click="handleMarkAsSpam">Mark the question as spam</a>
 		      </a-menu-item>
@@ -42,7 +45,7 @@
 <script>
 	import { observer } from "mobx-vue"
 	import { message } from "ant-design-vue"
-	import { MARK_SPAM } from '~/constants'
+	import { MARK_SPAM, MARK_BLOCK_NOTIF } from '~/constants'
 	
   export default observer({
   	name: 'ControlsPanel',
@@ -63,6 +66,16 @@
 				if (this.$mobx.account.isLoggedIn) {
 	        this.question.mark(MARK_SPAM, {detailed: true}).then(() => {
 						message.success('Marked as spam!')
+					})
+	      } else {
+	        this.$mobx.ui.loginModal.show('signup')
+	      }
+			},
+
+			handleMarkAsBlockNotif() {
+				if (this.$mobx.account.isLoggedIn) {
+	        this.question.mark(MARK_BLOCK_NOTIF, {detailed: true}).then(() => {
+						message.success('Successfully!')
 					})
 	      } else {
 	        this.$mobx.ui.loginModal.show('signup')
