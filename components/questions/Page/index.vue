@@ -25,13 +25,13 @@
 			</NoSSR>
 		</div>
 		<div style="min-height: 326px;">
-			<h2 style="margin-top: 5px;">Stats</h2>
+			<h2 style="margin-top: 5px;">Background</h2>
 			<NoSSR>
 				<StatsChart :question="model"></StatsChart>
 			</NoSSR>
 		</div>
 		<div>
-			<h2>Related questions</h2>
+			<h2>You Might Also Like or Dislike</h2>
 			<Related :question="model"></Related>
 			<h2>Have a question? <a @click="toggleBuilderVisible">Ask here :)</a></h2>
 		</div>

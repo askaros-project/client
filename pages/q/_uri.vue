@@ -5,6 +5,7 @@
 <script>
 	import { Question as QuestionModel } from '~/models/Question'
 	import Page from "~/components/questions/Page"
+	import { VOTE_YES, VOTE_NO } from '~/constants'
 
   export default {
   	name: 'QuestionPageWrap',
@@ -19,8 +20,25 @@
 	  },
 
 	  head() {
+	  	let { title, votes } = this.asyncQuestionData
+	  	let descr = title
+	  	if (votes.total > 0) {
+	  		if (votes.counts[VOTE_YES] >= votes.counts[VOTE_NO]) {
+	  			const percent = Math.floor((votes.counts[VOTE_YES] / votes.total) * 100)
+	  			descr = `${percent}% says yes on ${title}`
+	  		} else {
+	  			const percent = Math.floor((votes.counts[VOTE_NO] / votes.total) * 100)
+					descr = `${percent}% says no on ${title}`
+	  		}
+	  	} 
   		return {
   			meta: [{
+	  			name: 'keywords',
+	  			content: this.asyncQuestionData.keywords.join(' ')
+	  		},{
+	  			name: 'description',
+	  			content: descr
+	  		},{
 	  			name: 'og:site_name',
 	  			content: process.env.APP_NAME
 	  		},{
@@ -28,7 +46,10 @@
 	  			content: 'website'
 	  		},{
 	  			name: 'og:title',
-	  			content: this.asyncQuestionData.title
+	  			content: title
+	  		},{
+	  			name: 'og:description',
+	  			content: descr
 	  		}, {
 	  			name: 'og:url',
 	  			content: process.env.SITE_URL + '/q/' + this.asyncQuestionData.uri
