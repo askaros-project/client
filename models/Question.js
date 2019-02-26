@@ -11,7 +11,8 @@ import {
 	TAG_PRETTY_MUCH_TRUE,
 	TAG_WEIRD,
 	TAG_EXPECTED,
-	MARK_SPAM
+	MARK_SPAM,
+	MARK_BLOCK_NOTIF
 } from '~/constants'
 
 class QuestionVotes {
@@ -81,9 +82,14 @@ class QuestionMarks {
 		return this.items.some(m => m.code === MARK_SPAM)
 	}
 
+	@computed
+	get isNotifBlocked() {
+		return this.items.some(m => m.code === MARK_BLOCK_NOTIF)
+	}
+
 	@action
 	update(data) {
-		if (data && data.items.length) {
+		if (data && data.items) {
 			this.items = data.items
 		}
 	}

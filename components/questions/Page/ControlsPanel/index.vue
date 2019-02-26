@@ -1,14 +1,5 @@
 <template>
 	<ul class="question-controls">
-		<li class="comments" @click="toggleComments">
-			<a-tooltip placement="top" title="Comments">
-	      <a-icon type="message">
-	      </a-icon>
-	      <span class="num">
-	      	{{ question.comments.total || '' }}
-	      </span>
-	    </a-tooltip>
-	  </li>
     <li>
 			<a-tooltip placement="top" title="Share on Facebook">
 	      <a-icon type="facebook" theme="filled" @click="fbClick"></a-icon>
@@ -26,26 +17,21 @@
 				</a>
 			</a-tooltip>
 		</li>
-		<li>
-			<a-dropdown>
-				<a-icon type="ellipsis"></a-icon>
-				<a-menu slot="overlay">
-					<a-menu-item>
-		        <a @click="handleMarkAsBlockNotif">Prevent email notifications</a>
-		      </a-menu-item>
-		      <a-menu-item>
-		        <a @click="handleMarkAsSpam">Mark the question as spam</a>
-		      </a-menu-item>
-		    </a-menu>
-			</a-dropdown>
-		</li>
+		<li class="comments-item" @click="toggleComments">
+			<a-tooltip placement="top" title="Comments">
+	      <a-icon type="message">
+	      </a-icon>
+	      <span class="num">
+	      	{{ question.comments.total || '' }}
+	      </span>
+	    </a-tooltip>
+	  </li>
 	</ul>
 </template>
 
 <script>
 	import { observer } from "mobx-vue"
 	import { message } from "ant-design-vue"
-	import { MARK_SPAM, MARK_BLOCK_NOTIF } from '~/constants'
 	
   export default observer({
   	name: 'ControlsPanel',
@@ -62,26 +48,6 @@
   	},
 
   	methods: {
-  		handleMarkAsSpam() {
-				if (this.$mobx.account.isLoggedIn) {
-	        this.question.mark(MARK_SPAM, {detailed: true}).then(() => {
-						message.success('Marked as spam!')
-					})
-	      } else {
-	        this.$mobx.ui.loginModal.show('signup')
-	      }
-			},
-
-			handleMarkAsBlockNotif() {
-				if (this.$mobx.account.isLoggedIn) {
-	        this.question.mark(MARK_BLOCK_NOTIF, {detailed: true}).then(() => {
-						message.success('Successfully!')
-					})
-	      } else {
-	        this.$mobx.ui.loginModal.show('signup')
-	      }
-			},
-
 			fbClick() {
 				if (window.FB) {
 					window.FB.ui({
@@ -134,7 +100,6 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-		margin-top: 15px;
 
 		li {
 			opacity: 0.8;
@@ -144,17 +109,17 @@
 			}
 			margin: 5px;
 			.anticon {
-				font-size: 18px;
+				font-size: 20px;
 				color: rgba(0,0,0,0.8);
 			}
 
-			&.comments {
+			&.comments-item {
 				font-size: 14px;
-				margin-right: 25px;
+				margin-left: 25px;
 				position: relative;
 
 				.num {
-					margin-top: -3px;
+					margin-top: -5px;
 					position: absolute;
 					top: 3px;
 					left: 20px;

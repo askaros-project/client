@@ -1,14 +1,16 @@
 <template>
 	<div class="question-page">
 		<div class="title-wrap">
+			<MarksPanel :question="model" />
 			<h1>
 				{{ model.title }}
 			</h1>
-			<VoteButton :question="model" style="margin: 10px 0;"></VoteButton>
+			<MoreDropdown :question="model" />
 		</div>
 		<div class="controls-wrap">
-			<MarksPanel :question="model"></MarksPanel>
 			<ControlsPanel :question="model" :toggle-comments="toggleCommentsVisible"></ControlsPanel>
+			<VoteButton class="large-vote-btn" :question="model" :withCount="true"></VoteButton>
+			<VoteButton class="small-vote-btn" :question="model" :withCount="true" size="small"></VoteButton>
 		</div>
 		<div class="separator"></div>
 		<h2>Tag the result</h2>
@@ -52,6 +54,7 @@
 	import VoteButton from "~/components/questions/VoteButton"
 	import TagsPanel from "./TagsPanel"
 	import ControlsPanel from "./ControlsPanel"
+	import MoreDropdown from "./MoreDropdown"
 	import MarksPanel from "./MarksPanel"
 	import CommentsPanel from "./CommentsPanel"
 	import SentimentChart from "./SentimentChart"
@@ -63,7 +66,7 @@
   	components: {
   		NoSSR,
   		VoteButton, TagsPanel, ControlsPanel, MarksPanel, CommentsPanel,
-  		SentimentChart, StatsChart, Related, Builder
+  		SentimentChart, StatsChart, Related, Builder, MoreDropdown
   	},
   	props: {
   		questionData: Object, default: null
@@ -110,13 +113,10 @@
 		}
 
 		.title-wrap {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-start;
-
+			position: relative;
 			h1 {
-				padding-right: 10px;
+				padding-right: 25px;
+				margin: 20px 0;
 			}
 		}
 
@@ -125,11 +125,27 @@
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: flex-end;
+			padding: 30px 0 10px 0;
 		}
 
 		.separator {
 			border: 1px solid #f8f8f8;
 			border-width: 1px 0 0 0;
+		}
+
+		.large-vote-btn {
+			display: none;
+			@media screen and (min-width: 420px) {
+				display: block;
+			}
+		}
+
+		.small-vote-btn {
+			display: none;
+			margin-bottom: 5px;
+			@media screen and (max-width:419px) {
+				display: block;
+			}
 		}
 	}
 </style>

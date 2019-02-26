@@ -65,9 +65,14 @@ export default {
 	.subscribe-form {
     position: relative;
     .ant-form-item {
-      width: 300px;
       position: relative;
       margin: 0;
+      @media @xs {
+        width: 280px;
+      }
+      @media @sm {
+        width: 300px;
+      }
     }
     .ant-form-explain {
       position: absolute;

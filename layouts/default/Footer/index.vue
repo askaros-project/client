@@ -25,29 +25,32 @@ export default {
 <style lang="less" scoped>
 	.main-layout-footer {
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column-reverse;
+		align-items: stretch;
+		padding: 24px 15px;
 
-		@media @md {
-      padding: 24px 15px;
-    }
-    @media @lg {
-      padding: 20px 50px;
-    }
-
-		.ant-input-search {
-			max-width: 350px;
+		@media @xs {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
 		}
+
+		@media @lg {
+			align-items: center;
+			padding: 24px 50px;
+		}
+
 		ul {
 			li {
-				margin-right: 15px;
+				margin: 10px 15px 5px 0;
 				padding: 5px 0;
 				display: block;
-		    margin-bottom: 10px;
+				@media @xs {
+					margin: 10px 15px 5px 0;
+				}
 				@media @md {
 					display: inline-block;
-					margin-bottom: 0;
+					margin: 0px 15px 0 0;
 		    }
 			}
 		}

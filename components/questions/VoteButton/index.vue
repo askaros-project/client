@@ -25,7 +25,7 @@
       <span class="stats stats-right">{{ question.votes.noVoted }}%</span>
     </div>
     <Spin :no-mask="true" v-if="isPending"></Spin>
-    <div v-if="size === 'large' && question.votes.items.length" class="count">
+    <div v-if="withCount && question.votes.items.length" class="count">
       {{ question.votes.items.length }} vote{{ question.votes.items.length > 1 ? 's' : '' }}
     </div>
   </div>
@@ -47,6 +47,10 @@
       size: {
         type: String,
         default: "large"
+      },
+      withCount: {
+        type: Boolean,
+        default: false
       }
     }
   })
@@ -78,6 +82,7 @@
   .vote-button {
     position: relative;
     .controls {
+      position: relative;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -137,6 +142,10 @@
       text-align: center;
       margin: 5px 0 0 0;
       font-style: italic;
+      position: absolute;
+      top: -22px;
+      left: 0;
+      right: 0;
     }
   }
 </style>

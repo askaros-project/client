@@ -3,6 +3,9 @@
 		<li v-if="question.marks.isSpam">
 			<Mark title="Marked as spam"></Mark>
 		</li>
+		<li v-if="question.marks.isNotifBlocked">
+			<Mark title="Blocked notifications"></Mark>
+		</li>
 	</ul>
 </template>
 
@@ -18,6 +21,11 @@
 
 <style lang="less" scoped>
 	.question-marks {
-		padding: 0 0 5px 0;
+		padding: 0;
+		margin: 0;
+
+		li {
+			display: inline-block;
+		}
 	}	
 </style>

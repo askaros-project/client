@@ -303,7 +303,7 @@
 <style lang="less">
   .stats-chart {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     .chart {
       flex: 1;
       width: calc(100% - 150px);
