@@ -23,7 +23,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-	@import "../../../vars.less";
 	.main-layout-footer {
 		display: flex;
 		flex-direction: row;

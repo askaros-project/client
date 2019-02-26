@@ -97,7 +97,6 @@
 </script>
 
 <style lang="less" scoped>
-  @import "../vars.less";
   .home-page {
     max-width: 700px;
     margin: -45px auto 0 auto;

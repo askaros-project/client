@@ -28,8 +28,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-	@import "../../../vars.less";
-	
 	.main-layout-content.default {
 		margin-bottom: 25px;
 		@media @web {

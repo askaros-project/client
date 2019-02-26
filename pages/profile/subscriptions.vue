@@ -75,7 +75,6 @@
 </script>
 
 <style lang="less" scoped>
-	@import "../../vars.less";
 	.subscriptions-page {
 		@media @tabletmin {
 			max-width: 600px;

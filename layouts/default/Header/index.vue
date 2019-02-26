@@ -6,7 +6,12 @@
 				<SearchField></SearchField>
 			</li>
 			<li>
-				<nuxt-link to="/trending">Trending</nuxt-link>
+				<nuxt-link to="/collection/random">
+					<a-button>Random</a-button>
+				</nuxt-link>
+			</li>
+			<li>
+				<nuxt-link to="/collection/newest" style="white-space: nowrap;">Newest questions</nuxt-link>
 			</li>
 			<li v-if="!$mobx.account.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">
@@ -61,8 +66,6 @@ import ProfileButton from './ProfileButton'
 </script>
 
 <style lang="less" scoped>
-	@import "../../../vars.less";
-
 	.main-layout-header {
 		display: flex;
 		flex-direction: row;

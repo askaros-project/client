@@ -29,7 +29,6 @@
 </script>
 
 <style lang="less">
-	@import "../../../vars.less";
 	.comments-editor {
 		display: flex;
 		@media @tabletmin {

@@ -78,8 +78,6 @@
 </script>
 
 <style lang="less" scoped>
-	@import "../../vars.less";
-
 	.profile-page {
 		@media @tabletmin {
 			max-width: 600px;
