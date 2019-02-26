@@ -29,8 +29,11 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 
-		@media @tabletmax {
+		@media @md {
       padding: 24px 15px;
+    }
+    @media @lg {
+      padding: 20px 50px;
     }
 
 		.ant-input-search {
@@ -38,12 +41,13 @@ export default {
 		}
 		ul {
 			li {
-				display: inline-block;
 				margin-right: 15px;
 				padding: 5px 0;
-				@media @mobile {
-					display: block;
-		      margin-bottom: 10px;
+				display: block;
+		    margin-bottom: 10px;
+				@media @md {
+					display: inline-block;
+					margin-bottom: 0;
 		    }
 			}
 		}

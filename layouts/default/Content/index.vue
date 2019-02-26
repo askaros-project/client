@@ -28,16 +28,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
+	.main-layout-content {
+		background-color: #fff;
+	}
+
 	.main-layout-content.default {
 		margin-bottom: 25px;
-		@media @web {
+		width: 100%;
+		padding: 0 15px;
+
+		@media @lg {
       width: 960px;
       margin: 0px auto;
-      padding: 25px 0;
-    }
-    @media (max-width: 900px) {
-      width: 100%;
-      padding: 15px;
+      padding: 25px 50px;
     }
 	}
 	.main-layout-content.centered {

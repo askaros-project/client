@@ -31,14 +31,12 @@
 <style lang="less">
 	.comments-editor {
 		display: flex;
-		@media @tabletmin {
+		flex-direction: column;
+		@media @md {
 			flex-direction: row;
 			.ant-btn {
 				margin-left: 10px;
 			}
-		}
-		@media @mobile {
-			flex-direction: column;
 		}
 		.editr {
 			flex: 1;

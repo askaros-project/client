@@ -5,12 +5,12 @@
 			<li>
 				<SearchField></SearchField>
 			</li>
-			<li>
+			<li class="md-hidden">
 				<nuxt-link to="/collection/random">
 					<a-button>Random</a-button>
 				</nuxt-link>
 			</li>
-			<li>
+			<li class="md-hidden">
 				<nuxt-link to="/collection/newest" style="white-space: nowrap;">Newest questions</nuxt-link>
 			</li>
 			<li v-if="!$mobx.account.isLoggedIn">
@@ -25,10 +25,10 @@
 			</li>
 			<li v-if="$mobx.account.isLoggedIn">
 				<nuxt-link to="/activity">Activity
-					<a-badge :count="activityCounter.value"></a-badge>
+					<a-badge :count="$mobx.ui.activityCounter.value"></a-badge>
 				</nuxt-link>
 			</li>
-			<li v-if="$mobx.account.isLoggedIn">
+			<li v-if="$mobx.account.isLoggedIn" class="md-hidden">
 				<ProfileButton></ProfileButton>
 			</li>
 		</ul>
@@ -36,33 +36,29 @@
 </template>
 
 <script>
-import Vue from "vue"
-import Component from "vue-class-component"
-import { Observer } from "mobx-vue"
-import Logo from '~/components/shared/Logo'
-import SearchField from './SearchField'
-import ProfileButton from './ProfileButton'
+	import { observer } from "mobx-vue"
+	import Logo from '~/components/shared/Logo'
+	import SearchField from './SearchField'
+	import ProfileButton from './ProfileButton'
+  export default observer({    
 
-	@Observer
-  @Component({components: { Logo, SearchField, ProfileButton }})
-  export default class MainLayoutHeader extends Vue {
-
-    activityCounter = this.$mobx.ui.activityCounter
-    
+  	components: { Logo, SearchField, ProfileButton },
 	  mounted() {
 	  	if (this.$mobx.account.isLoggedIn) {
 	  		this.$mobx.ui.activityCounter.update()
 	  	}
-	  }
-		showSignUpModal(e) {
-			e.preventDefault()
-			this.$mobx.ui.loginModal.show('signup')
+	  },
+	  methods: {
+			showSignUpModal(e) {
+				e.preventDefault()
+				this.$mobx.ui.loginModal.show('signup')
+			},
+			showSignInModal(e) {
+				e.preventDefault()
+				this.$mobx.ui.loginModal.show('signin')
+			}
 		}
-		showSignInModal(e) {
-			e.preventDefault()
-			this.$mobx.ui.loginModal.show('signin')
-		}
-}
+})
 </script>
 
 <style lang="less" scoped>
@@ -71,9 +67,15 @@ import ProfileButton from './ProfileButton'
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		padding: 0 55px 0 15px;
+		background-color: #fff;
 
-    @media @tabletmax {
-      padding: 0 15px;
+		@media @md {
+			padding: 0 15px;
+		}
+
+    @media @lg {
+      padding: 0 50px;
     }
 
 		.controls {
@@ -82,12 +84,17 @@ import ProfileButton from './ProfileButton'
 			align-items: center;
 			li {
 				display: inline-block;
-				margin-left: 20px;
+				margin-left: 10px;
+				@media @sm {
+					margin-left: 15px;
+				}
 				position: relative;
 			}
 			a.signin {
 				white-space: nowrap;
-				margin-left: 15px;
+				@media @md {
+					margin-left: 15px;
+				}
 			}
 			.ant-badge {
 				position: absolute;

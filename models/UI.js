@@ -36,9 +36,19 @@ class ActivityCounter {
 	}
 }
 
+class Sider {
+	@observable collapsed = true
+
+	@action
+	toggle() {
+		this.collapsed = !this.collapsed
+	}
+}
+
 export class UI {
 	constructor() {
 		this.loginModal = new LoginModal()
 		this.activityCounter = new ActivityCounter()
+		this.sider = new Sider()
 	}
 }

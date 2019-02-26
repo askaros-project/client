@@ -79,7 +79,7 @@
 
 <style lang="less" scoped>
 	.profile-page {
-		@media @tabletmin {
+		@media @md {
 			max-width: 600px;
 		}
 		margin: 0 auto;

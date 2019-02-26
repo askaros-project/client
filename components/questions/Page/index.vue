@@ -103,7 +103,6 @@
 
 <style lang="less" scoped>
 	.question-page {
-		max-width: 900px;
 		margin: 10px auto 0 auto;
 
 		h2 {

@@ -1,5 +1,19 @@
-@mobile : ~"screen and (max-width: 600px)";
-@table : ~"screen and (min-width: 600px) and (max-width: 960px)";
-@web : ~"screen and (min-width: 960px)";
-@tabletmin : ~"screen and (min-width: 600px)";
+@xs : ~"screen and (max-width: 480px)";
+@sm : ~"screen and (min-width: 576px)";
+@md : ~"screen and (min-width: 768px)";
+@lg : ~"screen and (min-width: 992px)";
+@sm_max : ~"screen and (max-width: 575px)";
+@md_max : ~"screen and (max-width: 767px)";
+@lg_max : ~"screen and (max-width: 991px)";
+
+@mobile : ~"screen and (max-width: 768px)";
+@tablet : ~"screen and (min-width: 768px) and (max-width: 960px)";
+@laptop : ~"screen and (min-width: 960px)";
+@tabletmin : ~"screen and (min-width: 768px)";
 @tabletmax : ~"screen and (max-width: 960px)";
+
+.md-hidden {
+	@media @md_max {
+		display: none !important;
+	}
+}
