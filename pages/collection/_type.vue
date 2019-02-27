@@ -1,10 +1,7 @@
 <template>
 	<div class="collection-page">
 		<Spin v-if="isFetching"></Spin>
-		<ul class="list"
-			v-infinite-scroll="tryFetchMore"
-			:infinite-scroll-disabled="isLoadingMore"
-			infinite-scroll-distance="10">
+		<ul class="list">
 			<li v-for="item in items">
 				<Link :question="item"></Link>
 				<VoteButton :question="item" size="small"></VoteButton>
@@ -14,8 +11,8 @@
 		<div class="load-more-indicator" v-if="isLoadingMore">
 			<Spin v-if="true" no-mask></Spin>
 		</div>
-		<div class="load-more-button" v-if="fetchMoreTimes % 3 === 0 && !isNoMoreItems">
-			<a-button @click="fetchMore">Load More</a-button>
+		<div class="load-more-button" v-if="fetchMoreTimes % showBtnEveryTimes === 0 && !isNoMoreItems">
+			<a-button @click="fetchMore">{{ loadMoreBtnText }}</a-button>
 		</div>
 	</div>
 </template>
@@ -41,10 +38,17 @@
 				isNoMoreItems: false,
 				items: [],
 				limit: 25,
-				fetchMoreTimes: 1
+				fetchMoreTimes: 1,
+				showBtnEveryTimes: 3,
+				loadMoreBtnText: "Load more"
 			}
 		},
 		mounted() {
+			if (this.$route.params.type === 'random') {
+				this.showBtnEveryTimes = 1
+				this.loadMoreBtnText = 'Refresh'
+			}
+			this.$infiniteScroll.addBottomListener(this.tryFetchMore)
 			this.isFetching = true
 			this.$http.get(this.getCollectionUrl())
 				.then((resp) => {
@@ -52,9 +56,17 @@
 					this.isFetched = true
 					this.isNoMoreItems = resp.data.questions.length === 0
 					this.items = _.map(resp.data.questions, (data) => new QuestionModel(data))
+					setTimeout(() => {
+						if (this.$infiniteScroll.isBottom()) {
+							this.tryFetchMore()
+						}
+					}, 0)
 				}).catch(() => {
 					this.isFetching = false
 				})
+		},
+		beforeDestroy() {
+			this.$infiniteScroll.removeBottomListener(this.tryFetchMore)
 		},
 		methods: {
 			getCollectionUrl() {
@@ -71,7 +83,7 @@
 			},
 			tryFetchMore() {
 				if (this.isFetched && !this.isLoadingMore && !this.isNoMoreItems) {
-					if (this.fetchMoreTimes % 3 !== 0) {
+					if (this.fetchMoreTimes % this.showBtnEveryTimes !== 0) {
 						this.fetchMore()
 					}
 				}
@@ -83,7 +95,12 @@
 						this.fetchMoreTimes++
 						this.isLoadingMore = false
 						this.isNoMoreItems = resp.data.questions.length === 0
-						this.items = [].concat(this.items, _.map(resp.data.questions, (data) => new QuestionModel(data)))
+						if (this.$route.params.type !== 'random') {
+							this.items = [].concat(this.items, _.map(resp.data.questions, (data) => new QuestionModel(data)))
+						} else {
+							this.items = _.map(resp.data.questions, (data) => new QuestionModel(data))
+							document.documentElement.scrollTo(0,0)
+						}
 					})
 					.catch(() => {
 						this.isLoadingMore = false

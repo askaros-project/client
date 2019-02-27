@@ -1,9 +1,6 @@
 <template>
 	<div class="activity-page">
-		<ul class="activity-list"
-			v-infinite-scroll="tryFetchMore"
-			:infinite-scroll-disabled="isLoadingMore"
-			infinite-scroll-distance="10">
+		<ul class="activity-list">
 			<li v-for="item in items">
 				<span class="tag-wrap">
 					<span class="time">{{item.createdAt | formatDateFromNow}}</span>
@@ -22,6 +19,9 @@
 		<Spin v-if="isFetching"></Spin>
 		<div class="load-more-indicator" v-if="isLoadingMore">
 			<Spin v-if="true" no-mask></Spin>
+		</div>
+		<div class="load-more-button" v-if="fetchMoreTimes % 3 === 0 && pagination.total > items.length">
+			<a-button @click="fetchMore">Load More</a-button>
 		</div>
 	</div>
 </template>
@@ -54,7 +54,8 @@
 				isFetched: false,
 				isLoadingMore: false,
 				items: [],
-				pagination: {pageSize: 25, page: 1, total: 0},
+				fetchMoreTimes: 1,
+				pagination: {pageSize: 15, page: 1, total: 0},
 				colors: {
 					[ACTIVITY_QUESTION]: 'green',
 					[ACTIVITY_VOTE]: 'green',
@@ -69,6 +70,7 @@
   		}
   	},
 		mounted() {
+			this.$infiniteScroll.addBottomListener(this.tryFetchMore)
 			this.isFetching = true
 			this.$http
 				.get("activity?" + queryString.stringify({
@@ -81,10 +83,18 @@
 					this.items = resp.data.items
 					this.pagination.total = resp.data.count
 					this.$mobx.ui.activityCounter.update()
+					setTimeout(() => {
+						if (this.$infiniteScroll.isBottom()) {
+							this.tryFetchMore()
+						}
+					}, 0)
 				})
 				.catch(() => {
 					this.isFetching = false
 				})
+		},
+		beforeDestroy() {
+			this.$infiniteScroll.removeBottomListener(this.tryFetchMore)
 		},
 
 		methods: {
@@ -96,6 +106,7 @@
 						page: this.pagination.page++
 					}))
 					.then(resp => {
+						this.fetchMoreTimes++
 						this.isLoadingMore = false
 						this.items = [].concat(this.items, resp.data.items)
 					})
@@ -106,7 +117,9 @@
 
 			tryFetchMore() {
 				if (this.isFetched && !this.isLoadingMore && this.pagination.total > this.items.length) {
-					this.fetchMore()
+					if (this.fetchMoreTimes % 3 !== 0) {
+						this.fetchMore()
+					}
 				}
 			}
 		},
@@ -149,6 +162,10 @@
 		.load-more-indicator {
 			height: 30px;
 			position: relative;
+		}
+		.load-more-button {
+			margin-top: 10px;
+			text-align: center;
 		}
 	}	
 </style>

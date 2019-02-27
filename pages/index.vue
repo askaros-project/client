@@ -59,24 +59,15 @@
       }
     },
     mounted() {
-      window.addEventListener('scroll', this.onScrollListener)
-      if (this.isBottom()) {
+      this.$infiniteScroll.addBottomListener(this.handleSrollToBottom)
+      if (this.$infiniteScroll.isBottom()) {
         this.handleSrollToBottom()
       }
     },
     beforeDestroy() {
-      window.removeEventListener('scroll', this.onScrollListener)
+      this.$infiniteScroll.removeBottomListener(this.handleSrollToBottom)
     },
     methods: {
-      isBottom() {
-        const layoutInnerEl = document.getElementById('__layout').children[0]
-        return document.documentElement.scrollTop + window.innerHeight > layoutInnerEl.offsetHeight - 10
-      },
-      onScrollListener() {
-        if (this.isBottom()) {
-          this.handleSrollToBottom()
-        }
-      },
       handleSrollToBottom() {
         if (this.loadMode !== 'button') {
           this.$refs.collection.fetchMore(() => {
