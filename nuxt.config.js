@@ -26,7 +26,7 @@ module.exports = {
       { src: 'https://apis.google.com/js/client:platform.js' },
       {
         src:
-          'https://maps.googleapis.com/maps/api/js?key=AIzaSyDlkdr6FNyLSU6rAAOvFtGE3f5x1XW2JYU&libraries=places&language=en-US'
+          'https://maps.googleapis.com/maps/api/js?key=AIzaSyDlkdr6FNyLSU6rAAOvFtGE3f5x1XW2JYU&libraries=places&language=en'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
