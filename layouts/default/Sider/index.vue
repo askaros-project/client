@@ -93,7 +93,7 @@ export default observer({
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: 2;
+    z-index: 301;
 
     ul {
     	width: 200px;
@@ -113,6 +113,5 @@ export default observer({
 		    }
 		  }
     }
-
 	}
 </style>
