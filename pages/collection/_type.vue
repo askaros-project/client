@@ -11,7 +11,7 @@
 		<div class="load-more-indicator" v-if="isLoadingMore">
 			<Spin v-if="true" no-mask></Spin>
 		</div>
-		<div class="load-more-button" v-if="fetchMoreTimes % showBtnEveryTimes === 0 && !isNoMoreItems">
+		<div class="load-more-button" v-if="!isLoadingMore && isFetched && fetchMoreTimes % showBtnEveryTimes === 0 && !isNoMoreItems">
 			<a-button @click="fetchMore">{{ loadMoreBtnText }}</a-button>
 		</div>
 	</div>
