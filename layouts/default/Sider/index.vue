@@ -24,6 +24,11 @@
     			Profile
     		</a>
     	</li>
+    	<li v-if="$mobx.account.isLoggedIn && $mobx.account.isAdmin">
+    		<a @click="handleAdminClick">
+    			Admin
+    		</a>
+    	</li>
     	<li v-if="$mobx.account.isLoggedIn" class="logout-item">
     		<a @click="handleLogoutClick">
     			Logout
@@ -57,6 +62,11 @@ export default observer({
 		handleProfileClick(e) {
 			this.beforeItemClick(e).then(() => {
 				this.$router.push('/profile')
+			})
+		},
+		handleAdminClick(e) {
+			this.beforeItemClick(e).then(() => {
+				this.$router.push('/admin')
 			})
 		},
 		handleLogoutClick(e) {
@@ -94,7 +104,7 @@ export default observer({
 		    	color: #fff;
 		    }
 		    &.profile-item {
-		    	margin: 35px 0; 
+		    	margin: 35px 0 15px 0; 
 		    }
 		    &.logout-item {
 		    	position: absolute;
