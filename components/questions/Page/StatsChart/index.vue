@@ -304,11 +304,17 @@
   .stats-chart {
     display: flex;
     flex-direction: column;
+    @media @md {
+      flex-direction: row;
+    }
     .chart {
       flex: 1;
-      width: calc(100% - 150px);
+      width: 100%;
       margin: 0 auto;
       height: 270px;
+      @media @md {
+        width: calc(100% - 150px);
+      }
     }
     .type-selector {
       font-size: 14px;

@@ -104,6 +104,7 @@
       color: #949494;
       display: flex;
       flex-direction: row;
+      white-space: nowrap;
       span {
         color: #ccc;
         padding-left: 5px;

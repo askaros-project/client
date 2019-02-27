@@ -9,11 +9,14 @@
 				<Link :question="item"></Link>
 				<VoteButton :question="item" size="small"></VoteButton>
 			</li>
-			<EmptyListMessage v-if="isFetched && items.length === 0"></EmptyListMessage>
-			<div class="load-more-indicator" v-if="isLoadingMore">
-				<Spin v-if="true" no-mask></Spin>
-			</div>
 		</ul>
+		<EmptyListMessage v-if="isFetched && items.length === 0"></EmptyListMessage>
+		<div class="load-more-indicator" v-if="isLoadingMore">
+			<Spin v-if="true" no-mask></Spin>
+		</div>
+		<div class="load-more-button" v-if="fetchMoreTimes % 3 === 0 && !isNoMoreItems">
+			<a-button @click="fetchMore">Load More</a-button>
+		</div>
 	</div>
 </template>
 
@@ -37,7 +40,8 @@
 				isLoadingMore: false,
 				isNoMoreItems: false,
 				items: [],
-				limit: 25
+				limit: 25,
+				fetchMoreTimes: 1
 			}
 		},
 		mounted() {
@@ -67,16 +71,16 @@
 			},
 			tryFetchMore() {
 				if (this.isFetched && !this.isLoadingMore && !this.isNoMoreItems) {
-					this.fetchMore()
+					if (this.fetchMoreTimes % 3 !== 0) {
+						this.fetchMore()
+					}
 				}
 			},
 			fetchMore() {
 				this.isLoadingMore = true
-				this.$http.get(
-					'questions/collection/'
-					+ this.$route.params.type
-					+'?' + queryString.stringify({ limit: this.limit, offset: this.items.length }))
+				this.$http.get(this.getCollectionUrl())
 					.then(resp => {
+						this.fetchMoreTimes++
 						this.isLoadingMore = false
 						this.isNoMoreItems = resp.data.questions.length === 0
 						this.items = [].concat(this.items, _.map(resp.data.questions, (data) => new QuestionModel(data)))
@@ -94,6 +98,10 @@
 		.load-more-indicator {
 			height: 30px;
 			position: relative;
+		}
+
+		.load-more-button {
+			text-align: center;
 		}
 
 		ul.list {

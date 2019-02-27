@@ -12,7 +12,9 @@
 					</router-link>
 					<a-tag v-else :color="colors[item.type]">{{ $messages.ACTIVITY[item.type] }}</a-tag>
 				</span>
-				<router-link v-if="item.question" :to="'/q/' + item.question.uri">{{item.question.title}}</router-link>
+				<router-link
+					class="question-title"
+					v-if="item.question" :to="'/q/' + item.question.uri">{{item.question.title}}</router-link>
 				<span v-else class="mark-deleted">deleted</span>
 			</li>
 		</ul>
@@ -115,7 +117,7 @@
 	.activity-page {
 		ul.activity-list {
 			height: 100%;
-			margin-top: 15px;
+			// margin-top: 15px;
 			li {
 				margin-bottom: 10px;
 				white-space: nowrap;
@@ -129,13 +131,18 @@
 					}
 					.time {
 						font-size: 14px;
-						min-width: 115px;
 						display: inline-block;
+						overflow: hidden;
+				    text-overflow: ellipsis;
+				    width: 90px;
 					}
 				}
 				.mark-deleted {
 					font-style: italic;
 					color: rgba(0,0,0,0.4);
+				}
+				@media @xs_max {
+					font-size: 14px;		
 				}
 			}
 		}

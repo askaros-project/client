@@ -15,6 +15,7 @@
 			</div>
 			<Footer></Footer>
 			<login-modal></login-modal>
+			<search-modal v-if="$mobx.ui.searchModal.visible"></search-modal>
 		</a-layout>
 		<Sider />
 	</a-layout>
@@ -26,10 +27,11 @@ import Content from "./default/Content"
 import Footer from "./default/Footer"
 import Sider from './default/Sider'
 import LoginModal from "./default/LoginModal"
+import SearchModal from "./default/SearchModal"
 import { observer } from "mobx-vue"
 export default observer({
 	name: "DefaultLayout",
-	components: { Header, Content, Footer, Sider, LoginModal },
+	components: { Header, Content, Footer, Sider, LoginModal, SearchModal },
 	props: {
 		contentType: {
 			type: String,
@@ -69,7 +71,7 @@ export default observer({
 			.content-wrap {
 				flex: 1;
 				@media @md_max {
-					margin-top: 64px; // header height
+					margin-top: 84px;
 				}
 			}
 

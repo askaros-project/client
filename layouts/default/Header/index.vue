@@ -2,8 +2,11 @@
 	<a-layout-header class="main-layout-header">
 		<nuxt-link to="/" style="text-decoration: none;"><logo></logo></nuxt-link>
 		<ul class="controls">
-			<li>
+			<li class="search-field">
 				<SearchField></SearchField>
+			</li>
+			<li class="search-icon">
+				<a-icon type="search" @click="$mobx.ui.searchModal.show()"></a-icon>
 			</li>
 			<li class="md-hidden">
 				<nuxt-link to="/collection/random">
@@ -89,6 +92,23 @@
 					margin-left: 15px;
 				}
 				position: relative;
+
+				&.search-field {
+					@media @xs_max {
+						display: none;
+					}
+				}
+
+				&.search-icon {
+					cursor: pointer;
+					opacity: 0.6;
+					&:hover {
+						opacity: 1;
+					}
+					@media @xs {
+						display: none;
+					}
+				}
 			}
 			a.signin {
 				white-space: nowrap;

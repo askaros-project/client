@@ -106,6 +106,9 @@
     .list-wrap {
       display: flex;
       flex-direction: row;
+      @media screen and (max-width: 450px) {
+        font-size: 14px;
+      }
       ul {
         flex: 1;
         list-style: outside;

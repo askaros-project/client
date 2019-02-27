@@ -25,6 +25,20 @@ class LoginModal {
 	}
 }
 
+class SearchModal {
+	@observable visible = false
+
+	@action
+	show() {
+		this.visible = true
+	}
+
+	@action
+	hide() {
+		this.visible = false
+	}
+}
+
 class ActivityCounter {
 	@observable value = 0
 
@@ -48,6 +62,7 @@ class Sider {
 export class UI {
 	constructor() {
 		this.loginModal = new LoginModal()
+		this.searchModal = new SearchModal()
 		this.activityCounter = new ActivityCounter()
 		this.sider = new Sider()
 	}
