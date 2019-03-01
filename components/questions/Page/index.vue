@@ -81,7 +81,7 @@
 		methods: {
 			onTag(code) {
 				this.model.tag(code, {detailed: true}).then(() => {
-	  			message.success('Successfully!')
+	  			message.success('Success!')
 	  		})
 			},
 

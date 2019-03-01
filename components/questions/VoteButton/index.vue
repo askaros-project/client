@@ -66,7 +66,7 @@
         this.isPending = true
         this.question.vote(code, {detailed: true}).then(() => {
           this.isPending = false
-          message.success('Successfully!')  
+          message.success('Success!')  
         })
         .catch(() => {
           this.isPending = false

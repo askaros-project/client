@@ -25,7 +25,7 @@
 				this.isPending = true
 				this.$http.post('feedback', values).then(() => {
 					this.isPending = false
-					message.success('Successfully!')
+					message.success('Success!')
 					this.$refs.form.form.resetFields()
 				})
 				.catch(() => {

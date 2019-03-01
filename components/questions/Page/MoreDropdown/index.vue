@@ -22,7 +22,7 @@
       handleMarkAsSpam() {
         if (this.$mobx.account.isLoggedIn) {
           this.question.mark(MARK_SPAM, {detailed: true}).then(() => {
-            message.success('Successfully!')
+            message.success('Success!')
           })
         } else {
           this.$mobx.ui.loginModal.show('signup')
@@ -32,7 +32,7 @@
       handleMarkAsBlockNotif() {
         if (this.$mobx.account.isLoggedIn) {
           this.question.mark(MARK_BLOCK_NOTIF, {detailed: true}).then(() => {
-            message.success('Successfully!')
+            message.success('Success!')
           })
         } else {
           this.$mobx.ui.loginModal.show('signup')

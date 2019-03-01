@@ -141,7 +141,7 @@ export default {
 				.then(() => {
 					this.isPending = false
 					this.fetch()
-					message.success('Successfully!')
+					message.success('Success!')
 				})
 				.catch(() => {
 					this.isPending = false

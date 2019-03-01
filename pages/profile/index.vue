@@ -69,7 +69,7 @@
 			},
 			handleSave(values) {
 				this.$mobx.account.user.save(values).then(() => {
-					message.success('Successfully saved!')
+					message.success('Saved!')
 					this.isEdit = false
 				})
 			}

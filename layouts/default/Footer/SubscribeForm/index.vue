@@ -48,7 +48,7 @@ export default {
           this.$http.post('maillist/subscribers', { email: values.sub_email}).then(() => {
             this.isPending = false
             this.isDone = true
-            message.success('Successfully!')
+            message.success('Success!')
             this.form.resetFields()
           }).catch(() => {
             this.isPending = false
