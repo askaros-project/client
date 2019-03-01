@@ -10,13 +10,13 @@
     >
     <ul>
     	<li>
-    		<a @click="handleRandomClick">
-					Random questions
+    		<a @click="handleNewestClick">
+					Newest questions
 				</a>
     	</li>
     	<li>
-    		<a @click="handleNewestClick">
-					Newest questions
+    		<a @click="handleRandomClick">
+					Random
 				</a>
     	</li>
     	<li v-if="$mobx.account.isLoggedIn" class="profile-item">
@@ -51,7 +51,17 @@ export default observer({
 		},
 		handleRandomClick(e) {
 			this.beforeItemClick(e).then(() => {
-				this.$router.push('/collection/random')
+				if (this.isRandomFetching) {
+					return
+				}
+				this.isRandomFetching = true
+				this.$http.get('questions/random_question').then((resp) => {
+					if (resp.data.question) {
+						this.$router.push('/q/' + resp.data.question.uri)
+					}
+				}).finally(() => {
+					this.isRandomFetching = false
+				})
 			})
 		},
 		handleNewestClick(e) {

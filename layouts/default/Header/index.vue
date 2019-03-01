@@ -9,9 +9,7 @@
 				<a-icon type="search" @click="$mobx.ui.searchModal.show()"></a-icon>
 			</li>
 			<li class="md-hidden">
-				<nuxt-link to="/collection/random">
-					<a-button>Random</a-button>
-				</nuxt-link>
+				<a-button @click="handleRandomClick">Random</a-button>
 			</li>
 			<li class="md-hidden">
 				<nuxt-link to="/collection/newest" style="white-space: nowrap;">Newest questions</nuxt-link>
@@ -59,6 +57,19 @@
 			showSignInModal(e) {
 				e.preventDefault()
 				this.$mobx.ui.loginModal.show('signin')
+			},
+			handleRandomClick() {
+				if (this.isRandomFetching) {
+					return
+				}
+				this.isRandomFetching = true
+				this.$http.get('questions/random_question').then((resp) => {
+					if (resp.data.question) {
+						this.$router.push('/q/' + resp.data.question.uri)
+					}
+				}).finally(() => {
+					this.isRandomFetching = false
+				})
 			}
 		}
 })
