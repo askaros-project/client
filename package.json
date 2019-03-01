@@ -38,6 +38,7 @@
     "vue-class-component": "^6.3.2",
     "vue-infinite-scroll": "^2.0.2",
     "vue-no-ssr": "^1.1.1",
+    "vue-recaptcha": "^1.1.1",
     "vue-resource": "^1.5.1",
     "vue-wysiwyg": "^1.7.2"
   },

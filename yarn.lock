@@ -8241,6 +8241,11 @@ vue-no-ssr@^1.1.0, vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
+vue-recaptcha@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vue-recaptcha/-/vue-recaptcha-1.1.1.tgz#be38f4ffab500e7f4775f149a279bb962cf91f07"
+  integrity sha512-ThjujwmoLrDS6EeE7AGHmeGfWDhFOFUAyfPfSCXojYMoSwFOJv0LL0/86PqHwjHM69HIq0kBI9ps+JeIQa5V/A==
+
 vue-ref@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/vue-ref/-/vue-ref-1.0.4.tgz#c27862b15a2720cff6b792566d824d1c3ac53320"

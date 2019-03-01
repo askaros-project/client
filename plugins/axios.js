@@ -31,7 +31,6 @@ export default ({ app, $axios, redirect }) => {
 				redirectTo = ''
 			if (code === 401) {
 				msg = 'Unauthorized'
-				redirectTo = '/'
 			} else if (code === 403) {
 				msg = 'Forbidden'
 				redirectTo = '/'

@@ -9,7 +9,8 @@ module.exports = {
     API_URL: process.env.API_URL,
     FB_APP_ID: process.env.FB_APP_ID,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    SITE_URL: process.env.SITE_URL
+    SITE_URL: process.env.SITE_URL,
+    CAPTCHA_KEY: process.env.CAPTCHA_KEY
   },
 
   /*
@@ -27,6 +28,11 @@ module.exports = {
       {
         src:
           'https://maps.googleapis.com/maps/api/js?key=AIzaSyDlkdr6FNyLSU6rAAOvFtGE3f5x1XW2JYU&libraries=places&language=en'
+      },
+      {
+        src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+        async: true,
+        defer: true
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]

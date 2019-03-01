@@ -46,7 +46,15 @@
       />
     </a-form-item>
     <a-form-item>
-      <a-button type='primary' html-type='submit'>
+      <vue-recaptcha
+        ref="captcha"
+        :sitekey="captchaKey"
+        v-on:verify="verify"
+        v-on:expired="expiredToken"></vue-recaptcha>
+      <a-button
+        :disabled="disabled"
+        type='primary'
+        html-type='submit'>
         Send
       </a-button>
     </a-form-item>
@@ -55,12 +63,21 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha'
 export default {
   name: "ContactsForm",
+  components: { VueRecaptcha },
   data () {
     return {
+      captchaKey: process.env.CAPTCHA_KEY,
       formLayout: 'horizontal',
-      form: this.$form.createForm(this)
+      form: this.$form.createForm(this),
+      verifyToken: ''
+    }
+  },
+  computed: {
+    disabled() {
+      return !this.verifyToken
     }
   },
   methods: {
@@ -68,9 +85,20 @@ export default {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.$emit('submit', values)
+          this.$emit('submit', {...values, verifyToken: this.verifyToken })
         }
       })
+    },
+    verify(token) {
+      this.verifyToken = token
+    },
+    expiredToken() {
+      this.verifyToken = ''
+    },
+    reset() {
+      this.form.resetFields()
+      this.verifyToken = ''
+      this.$refs.captcha.reset()
     }
   }
 }
@@ -79,6 +107,8 @@ export default {
 
 <style lang="less">
   .contacts-form {
-    //
+    .ant-btn {
+      margin-top: 25px;
+    }
   }
 </style>
