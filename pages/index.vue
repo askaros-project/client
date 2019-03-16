@@ -1,20 +1,20 @@
 <template>
   <div class="home-page">
-    <div v-if="!$mobx.account.isLoggedIn">
+    <div v-if="false && !$mobx.account.isLoggedIn">
       <h1>The service WHY</h1>
       <div class="list-wrap">
-      <ul>
-        <li>Get a simple answer to a simple question</li>
-        <li>Dont waste time</li>
-        <li>Understand trends</li>
-        <li>What is in and out</li>
-      </ul>
-      <ul>
-        <li>Explore what is changing</li>
-        <li>Erase doubtness</li>
-        <li>Know more</li>
-      </ul>
-    </div>
+        <ul>
+          <li>Get a simple answer to a simple question</li>
+          <li>Dont waste time</li>
+          <li>Understand trends</li>
+          <li>What is in and out</li>
+        </ul>
+        <ul>
+          <li>Explore what is changing</li>
+          <li>Erase doubtness</li>
+          <li>Know more</li>
+        </ul>
+      </div>
     </div>
     <h1>
       <span v-if="!$mobx.account.isLoggedIn">Ask a question</span></h1>
@@ -83,7 +83,7 @@
         })
       }
     }
-    
+
 }
 </script>
 
@@ -110,5 +110,5 @@
         }
       }
     }
-  } 
+  }
 </style>
