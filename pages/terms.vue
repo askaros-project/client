@@ -6,7 +6,7 @@
 
 <script>
 	export default {
-		name: "Terms"
+		name: "Terms and Conditions"
 }
 </script>
 
