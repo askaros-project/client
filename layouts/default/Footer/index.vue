@@ -8,7 +8,6 @@
 		</ul>
 		<SubscribeForm></SubscribeForm>
 	</a-layout-footer>
-  <p>Askaros is an open source project - Content is available under CC-BY-SA-4.0 and source code available under MIT License.</p>
 </template>
 
 <script>
