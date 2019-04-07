@@ -4,9 +4,9 @@
 			<li><router-link to="/contacts">Contact</router-link></li>
 			<li><router-link to="/terms">Terms</router-link></li>
 			<li><router-link to="/about">About Askaros</router-link></li>
-			<li><router-link to="/collection/unexpected">Unexpected</router-link></li>
+			<li><router-link to="/collection/unexpected">Unexpected Sentiment</router-link></li>
 		</ul>
-    <p>Askaros is an open source project to query public sentiment. Content available under CC-BY-SA-4.0 and source code under MIT License.</p>
+    <p>Askaros is an open source project. Content under CC-BY-SA-4.0 and source code under MIT.</p>
 		<SubscribeForm></SubscribeForm>
 	</a-layout-footer>
 </template>
