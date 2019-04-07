@@ -1,6 +1,6 @@
 <template>
 	<div class="terms-page">
-		Terms
+		Terms here
 	</div>
 </template>
 
