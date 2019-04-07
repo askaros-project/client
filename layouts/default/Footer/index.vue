@@ -7,6 +7,7 @@
 			<li><router-link to="/collection/unexpected">Unexpected Sentiment</router-link></li>
 		</ul>
 		<SubscribeForm></SubscribeForm>
+    <p>text</p>
 	</a-layout-footer>
 </template>
 
