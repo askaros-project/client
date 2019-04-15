@@ -9,10 +9,10 @@
 				<a-icon type="search" @click="$mobx.ui.searchModal.show()"></a-icon>
 			</li>
 			<li class="md-hidden">
-				<a-button @click="handleRandomClick">Random</a-button>
+				<a-button @click="handleRandomClick">Explore</a-button>
 			</li>
 			<li class="md-hidden">
-				<nuxt-link to="/collection/newest" style="white-space: nowrap;">Newest questions</nuxt-link>
+				<nuxt-link to="/collection/newest" style="white-space: nowrap;">New</nuxt-link>
 			</li>
 			<li v-if="!$mobx.account.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">
@@ -41,7 +41,7 @@
 	import Logo from '~/components/shared/Logo'
 	import SearchField from './SearchField'
 	import ProfileButton from './ProfileButton'
-  export default observer({    
+  export default observer({
 
   	components: { Logo, SearchField, ProfileButton },
 	  mounted() {

@@ -5,8 +5,10 @@
 			<li><router-link to="/terms">Terms</router-link></li>
 			<li><router-link to="/about">About Askaros</router-link></li>
 			<li><router-link to="/collection/unexpected">Unexpected Sentiment</router-link></li>
+			<li><a href="https://www.reddit.com/r/askaros" target="_blank">Discuss</a></li>
+</a>
 		</ul>
-    <p>Askaros is an open source project. Content under CC-BY-SA-4.0 and source code under MIT.</p>
+    <p>Askaros data is crowdsourced by open collaboration. Content available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA-4.0</a> and <a href="https://github.com" target="_blank">source code</a> under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>. Help peers by answering yes/no questions.</p>
 		<SubscribeForm></SubscribeForm>
 	</a-layout-footer>
 </template>
@@ -17,7 +19,7 @@ export default {
 	name: "main-layout-footer",
 	components: { SubscribeForm },
 	methods: {
-		
+
 	}
 }
 

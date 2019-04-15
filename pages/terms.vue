@@ -1,6 +1,6 @@
 <template>
 	<div class="terms-page">
-		Terms here
+		<p>Askaros is an open source project. Content available under CC-BY-SA-4.0 and source code under MIT license.</p>
 	</div>
 </template>
 
@@ -13,5 +13,5 @@
 <style lang="less" scoped>
 	.terms-page {
 		max-width: 700px;
-	}	
+	}
 </style>
