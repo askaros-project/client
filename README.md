@@ -1,6 +1,6 @@
 # Askaros
 
-> Simple QA application
+> Askaros data is crowdsourced by open collaboration. Content available under CC-BY-SA-4.0 and source code under MIT license. Help peers by answering yes/no questions.
 
 ## Build Setup
 
