@@ -8,7 +8,7 @@
 			<li><a href="https://www.reddit.com/r/askaros" target="_blank">Discuss</a></li>
 </a>
 		</ul>
-    <p>Askaros data is crowdsourced by open collaboration. Content available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA-4.0</a> and <a href="https://github.com" target="_blank">source code</a> under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>. Help peers by answering yes/no questions.</p>
+    <p>Askaros data is crowdsourced by open collaboration. Content available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA-4.0</a> and <a href="https://github.com/askaros-project" target="_blank">source code</a> under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>. Help peers by answering yes/no questions.</p>
 		<SubscribeForm></SubscribeForm>
 	</a-layout-footer>
 </template>
