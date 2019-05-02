@@ -13,7 +13,7 @@
 			<VoteButton class="small-vote-btn" :question="model" :withCount="true" size="small"></VoteButton>
 		</div>
 		<div class="separator"></div>
-		<h2>Tag the result</h2>
+		<h2>The Result Was</h2>
 		<TagsPanel
 			:question="model"
 			v-on:tag="onTag"></TagsPanel>
@@ -21,7 +21,7 @@
 			v-if="isCommentsVisible"
 			:question="model"></CommentsPanel>
 		<div style="min-height: 326px;">
-			<h2>Sentiment</h2>
+			<h2>Historic Sentiment</h2>
 			<NoSSR>
 				<SentimentChart :question="model"></SentimentChart>
 			</NoSSR>
@@ -74,7 +74,7 @@
   	data() {
   		return {
   			model: new QuestionModel(this.questionData),
-  			isCommentsVisible: false,
+  			isCommentsVisible: true,
   			isBuilderVisible: false
   		}
 		},

@@ -12,7 +12,7 @@
 				<a-button @click="handleRandomClick">Explore</a-button>
 			</li>
 			<li class="md-hidden">
-				<nuxt-link to="/collection/newest" style="white-space: nowrap;">New</nuxt-link>
+				<nuxt-link to="/collection/newest" style="white-space: nowrap;">Latest</nuxt-link>
 			</li>
 			<li v-if="!$mobx.account.isLoggedIn">
 				<a href="#" @click="showSignInModal" class="signin">

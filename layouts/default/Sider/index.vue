@@ -11,12 +11,12 @@
     <ul>
     	<li>
     		<a @click="handleNewestClick">
-					Newest questions
+					Latest questions
 				</a>
     	</li>
     	<li>
     		<a @click="handleRandomClick">
-					Random
+					Explore
 				</a>
     	</li>
     	<li v-if="$mobx.account.isLoggedIn" class="profile-item">
@@ -114,7 +114,7 @@ export default observer({
 		    	color: #fff;
 		    }
 		    &.profile-item {
-		    	margin: 35px 0 15px 0; 
+		    	margin: 35px 0 15px 0;
 		    }
 		    &.logout-item {
 		    	position: absolute;

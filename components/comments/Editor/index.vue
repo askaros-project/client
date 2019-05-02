@@ -11,8 +11,8 @@
 		name: 'CommentsEditor',
 		components: { Spin },
 		props: {
-			placeholder: {type: String, default: "Type your comment..."},
-			btnText: {type: String, default: 'Comment'}
+			placeholder: {type: String, default: "Type your note here..."},
+			btnText: {type: String, default: 'Post'}
 		},
 		data() {
 			return {
