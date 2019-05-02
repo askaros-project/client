@@ -35,7 +35,7 @@
     },
     data() {
       return {
-        prefixes: ['Is it ok','Is it still ok','Is it normal','Is it safe','Are','Should','Do you care','Is'],
+        prefixes: ['Is it ok','Is it still ok','Is it normal','Is it safe','Are','Should','Do','Is','Will','Can','Does','Has','Did','Should','As',],
         placeholders: _.shuffle([
           'Is it ok to live in Paris',
           'Is it ok to listen Justin Bieber',
@@ -48,13 +48,28 @@
           'Is it normal to talk to yourself',
           'Is it normal for cats to snore',
           'Are you ready for a good time',
-          'Are spain and portugal similar',
-          'Should i leave my job',
-          'Should i listen to my heart',
+          'Are Spain and Portugal similar',
+          'Should I leave my job',
+          'Should I listen to my heart',
           'Do you care about fashion',
           'Do you care about your health',
           'Is it worth going to university',
-          'Is it dangerous to travel to mexico'
+          'Is it dangerous to travel to Mexico',
+          'Will Spain win the world cup',
+          'Will Obama become a president again',
+          'Will Spain win the world cup',
+          'Can Croatia win the world cup',
+          'Can Brazil win the world cup',
+          'Does wearing leather pants make you itch',
+          'Does wearing bikini make you uncomfortable',
+          'Has Britain left the EU?',
+          'Has France ever won the World Cup in Football',
+          'Did Spain win the world cup',
+          'Did France win the world cup',
+          'Should Spain win the world cup',
+          'Should Spain win the world cup',
+          'As there is a next world cup coming could France win again',
+          'As Spain won the world cup could they win it again',
         ]),
         selectedPrefix: 0,
         placeholder: '',
@@ -85,7 +100,7 @@
         setTimeout(() => {
           this.$refs.input.$el.focus()
         }, 0)
-        
+
       },
 
       rotatePlaceholder() {
