@@ -76,8 +76,8 @@ module.exports = {
   sitemap: {
     routes () {
       const axios = require('axios')
-      return axios.get('https://qap2-api.herokuapp.com/questions/collection/trending')
-        .then(res => res.data.questions.map(questions => '/questions/trending/' + questions.uri))
+      return axios.get('https://qap2-api.herokuapp.com/questions/collection/all')
+        .then(res => res.data.questions.map(questions => '/q/' + questions.uri))
     },
     // hostname: 'https://askaros.com',
     path: '/sitemap.xml',
