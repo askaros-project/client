@@ -71,7 +71,25 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'cookie-universal-nuxt', '@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'cookie-universal-nuxt', '@nuxtjs/style-resources', '@nuxtjs/sitemap'],
+
+  sitemap: {
+    routes () {
+      const axios = require('axios')
+      return axios.get('https://qap2-api.herokuapp.com/questions/collection/trending')
+        .then(res => res.data.questions.map(questions => '/questions/trending/' + questions.uri))
+    },
+    // hostname: 'https://askaros.com',
+    path: '/sitemap.xml',
+    generate: true,
+    gzip: false,
+    exclude: [
+      '/secret',
+      '/admin',
+      '/admin/**'
+    ],
+  },
+
 
   styleResources: {
     less: ['~/vars.less']
