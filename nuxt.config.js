@@ -76,7 +76,7 @@ module.exports = {
   sitemap: {
     routes () {
       const axios = require('axios')
-      return axios.get('https://qap2-api.herokuapp.com/questions/collection/all')
+      return axios.get('https://qap2-api.herokuapp.com/questions/collection/all') // refactor this to dynamically use local and deployed
         .then(res => res.data.questions.map(questions => '/q/' + questions.uri))
     },
     // hostname: 'https://askaros.com',

@@ -44,7 +44,7 @@
     },
     methods: {
       getValue() {
-        const text = _.trim(this.inputText) 
+        const text = _.trim(this.inputText)
         if (text && !this.keywords.length) {
           return [text]
         }
@@ -65,7 +65,7 @@
         this.inputVisible = false
       },
       addKeywordFromInput() {
-        const text = _.trim(this.inputText) 
+        const text = _.trim(this.inputText)
         if (text) {
           this.keywords.push(text)
         }
@@ -98,11 +98,12 @@
         margin-bottom: 5px;
       }
     }
-    .input-wrap{ 
+    .input-wrap{
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
+      width: 30%;
       .ant-tag {
         background: #fff;
         border-style: dashed;
