@@ -67,6 +67,7 @@
   		toggleEdit() {
 				this.isEdit = !this.isEdit
 			},
+			
 			handleSave(values) {
 				this.$mobx.account.user.save(values).then(() => {
 					message.success('Saved!')
@@ -105,5 +106,5 @@
 				}
 			}
 		}
-	}	
+	}
 </style>

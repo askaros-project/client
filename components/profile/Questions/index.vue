@@ -66,7 +66,7 @@
 </script>
 
 <style lang="less" scoped>
-	.profile-questions { 
+	.profile-questions {
 		margin-top: 30px;
 		position: relative;
 		min-height: 150px;

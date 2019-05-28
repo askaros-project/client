@@ -8,12 +8,15 @@
         <a-menu-item>
           <a @click="handleMarkAsSpam">Mark the question as spam</a>
         </a-menu-item>
+        <a-menu-item>
+          <a @click="handleMarkAsDeleted">Remove this question</a>
+        </a-menu-item>
       </a-menu>
     </a-dropdown>
 </template>
 
 <script>
-  import {MARK_SPAM, MARK_BLOCK_NOTIF} from '~/constants'
+  import {MARK_SPAM, MARK_BLOCK_NOTIF, MARK_DELETED} from '~/constants'
   import { message } from "ant-design-vue"
 
   export default {
@@ -37,6 +40,16 @@
         } else {
           this.$mobx.ui.loginModal.show('signup')
         }
+      },
+
+      handleMarkAsDeleted() {
+        if (this.$mobx.account.isLoggedIn) {
+          this.question.mark(MARK_DELETED, {detailed: true}).then(() => {
+            message.success('Success!')
+          })
+        } else {
+          this.$mobx.ui.loginModal.show('signup')
+        }
       }
     }
   }
@@ -50,5 +63,5 @@
     top: 0px;
     width: 24px;
     height: 24px;
-  }  
+  }
 </style>

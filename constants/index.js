@@ -24,6 +24,7 @@ export const ACTIVITY_OTHERS_VOTE_AS_WELL = 'OTHERS_VOTE_AS_WELL'
 export const MARK_SPAM = 1
 export const MARK_LIKE = 2
 export const MARK_BLOCK_NOTIF = 3
+export const MARK_DELETED = 4
 
 export const SEX_MALE = 'Male'
 export const SEX_FEMALE = 'Female'

@@ -12,7 +12,8 @@ import {
 	TAG_WEIRD,
 	TAG_EXPECTED,
 	MARK_SPAM,
-	MARK_BLOCK_NOTIF
+	MARK_BLOCK_NOTIF,
+	MARK_DELETED
 } from '~/constants'
 
 class QuestionVotes {
@@ -85,6 +86,11 @@ class QuestionMarks {
 	@computed
 	get isNotifBlocked() {
 		return this.items.some(m => m.code === MARK_BLOCK_NOTIF)
+	}
+// not sure if deleted is needed here since there is nothing to retrieve?
+	@computed
+	get deleted() {
+		return this.items.some(m => m.code === MARK_DELETED)
 	}
 
 	@action

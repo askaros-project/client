@@ -2,7 +2,7 @@
 	<div class="comments">
 		<Editor v-if="$mobx.account.isLoggedIn" v-on:submit="handleAdd"></Editor>
 		<div v-else class="login-text">
-			<a @click="handleLogin">Log in here </a> to leave a comment
+			<a @click="handleLogin">Log in here </a> to leave a note
 		</div>
 		<div v-for="item in comments.items">
 			<div v-if="!item.replyTo">
@@ -58,10 +58,10 @@
   	data() {
   		return {
   			comments: this.question.comments,
-  			replyTo: undefined		
+  			replyTo: undefined
   		}
   	},
-  	
+
 		mounted() {
 			this.question.comments.load()
 		},
@@ -95,7 +95,7 @@
 				this.question.comments.add(text, replyTo)
 			},
 			handleMark(item, code) {
-				this.question.comments.mark(item._id, code)		
+				this.question.comments.mark(item._id, code)
 			},
 			handleLogin() {
 				this.$mobx.ui.loginModal.show('signin')
