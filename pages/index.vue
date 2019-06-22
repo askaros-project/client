@@ -82,7 +82,18 @@
           this.loadMode = 'auto'
         })
       }
-    }
+    },
+
+
+        head () {
+            return {
+              title: this.title,
+              meta: [
+                { hid: 'google-site-verification', name: 'google-site-verification', content: '3DJw946r2rT19s1wjLrFBcowqzBiE8KqHsozVt9j1Jc' }
+              ]
+            }
+          }
+
 
 }
 </script>
