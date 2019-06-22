@@ -17,7 +17,7 @@
 		asyncData(params) {
 			return Promise.resolve({title: "ASYNC title"})
 		},
-
+// useless comment remove later
 		mounted() {
 			//
 		}
