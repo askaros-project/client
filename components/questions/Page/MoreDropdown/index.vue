@@ -8,15 +8,22 @@
         <a-menu-item>
           <a @click="handleMarkAsSpam">Mark the question as spam</a>
         </a-menu-item>
-        <a-menu-item>
-          <a @click="handleMarkAsDeleted">Remove this question</a>
-        </a-menu-item>
       </a-menu>
     </a-dropdown>
 </template>
 
+<slot="actions" slot-scope="question">
+	<a-popconfirm v-if="$mobx.account.isLoggedIn" v-on:submit="handleDeleteQuestion" title="Are you sure delete this question?"
+		@confirm="handleDeleteQuestion(question)"
+		ok-text="Yes"
+		cancel-text="No"
+		placement="top">
+		<a-button icon="delete" shape="circle"></a-button>
+	</a-popconfirm>
+</slot>
+
 <script>
-  import {MARK_SPAM, MARK_BLOCK_NOTIF, MARK_DELETED} from '~/constants'
+  import {MARK_SPAM, MARK_BLOCK_NOTIF} from '~/constants'
   import { message } from "ant-design-vue"
 
   export default {
@@ -42,14 +49,13 @@
         }
       },
 
-      handleMarkAsDeleted() {
-        if (this.$mobx.account.isLoggedIn) {
-          this.question.mark(MARK_DELETED, {detailed: true}).then(() => {
-            message.success('Success!')
-          })
-        } else {
-          this.$mobx.ui.loginModal.show('signup')
-        }
+      handleDeleteQuestion(question) {
+        this.isPending = true
+        this.$http.delete('questions/' + question._id).then(() => {
+          this.fetch()
+        }).catch(() => {
+          this.isPending = false
+        })
       }
     }
   }

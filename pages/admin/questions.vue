@@ -35,18 +35,18 @@
 
     <template slot="createdAt" slot-scope="createdAt">
       {{ formatDate(createdAt) }}
-    </template>	    
+    </template>
     <template slot="question" slot-scope="question">
     	<div class="question-title">
       	<a :href="'/q/' + question.uri" target="_blank">{{ question.title }}</a>
       </div>
-    </template>	    
+    </template>
     <template slot="user" slot-scope="user">
       <router-link :to="'/admin?uid='+user._id" >{{ user.username }}</router-link>
     </template>
     <template slot="number" slot-scope="number">
       {{ number ? number : '-' }}
-    </template>	    
+    </template>
     <template slot="actions" slot-scope="question">
     	<a-popconfirm title="Are you sure delete this question?"
     		@confirm="handleDeleteQuestion(question)"
@@ -55,7 +55,7 @@
     		placement="top">
       	<a-button icon="delete" shape="circle"></a-button>
       </a-popconfirm>
-    </template>	    
+    </template>
   </a-table>
 </template>
 
