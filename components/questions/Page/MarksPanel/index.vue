@@ -6,6 +6,9 @@
 		<li v-if="question.marks.isNotifBlocked">
 			<Mark title="Blocked notifications"></Mark>
 		</li>
+		<li v-if="question.marks.isDeleted">
+			<Mark title="Question deleted"></Mark>
+		</li>
 	</ul>
 </template>
 

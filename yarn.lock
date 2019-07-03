@@ -7225,6 +7225,10 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.8.2.tgz#dd73e80ba58bb65dd7a8aa2aeef6089cf6116f2a"
 
+vue-ua@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/vue-ua/-/vue-ua-1.7.0.tgz#819a9eef2d2cf65e90096480901d2912b43ec319"
+
 vue-wysiwyg@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/vue-wysiwyg/-/vue-wysiwyg-1.7.2.tgz#8f5ffe46e95e984c1f36874cc42ede5213e3b2d8"
