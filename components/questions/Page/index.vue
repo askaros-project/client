@@ -60,8 +60,8 @@
 	import SentimentChart from "./SentimentChart"
 	import StatsChart from "./StatsChart"
 	import Related from "./Related"
-	import VueAnalytics from 'vue-ua'
-	import VueRouter from 'vue-router'
+	import Vue from 'vue'
+	import VueAnalytics from 'vue-analytics'
 
   export default observer({
   	name: 'QuestionPage',
@@ -105,28 +105,12 @@
 		}
 	})
 
-	// If you're using vue-router and want route integration, create your routes before enabling vue-ua.
-	const router = new VueRouter({
-	  routes
-	})
-
 	Vue.use(VueAnalytics, {
-	  // [Required] The name of your app as specified in Google Analytics.
-	  appName: 'Askaros',
-	  // [Required] The version of your app.
-	  appVersion: '0.1',
-	  // [Required] Your Google Analytics tracking ID.
-	  trackingId: 'UA-142577326-1',
-	  // If you're using vue-router, pass the router instance here.
-	  vueRouter: router,
-
-	  // Global Dimensions and Metrics can optionally be specified.
-	  globalDimensions: [
-	    { dimension: 1, value: 'FirstDimension' },
-	    { dimension: 2, value: 'SecondDimension' }
-	    // Because websites are only 2D, obviously. WebGL? What's that?
-	  ]
-	})
+  id: 'UA-142577326-1',
+  autoTracking: {
+    screenview: true
+  }
+})
 
 </script>
 
