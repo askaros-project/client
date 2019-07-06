@@ -105,13 +105,6 @@
 			}
 		}
 	})
-	
-	Vue.use(VueAnalytics, {
-  id: 'UA-142577326-1',
-  autoTracking: {
-    screenview: true
-  }
-})
 
 </script>
 
