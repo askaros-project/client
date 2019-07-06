@@ -71,7 +71,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'cookie-universal-nuxt', '@nuxtjs/style-resources', '@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'cookie-universal-nuxt', '@nuxtjs/style-resources', '@nuxtjs/sitemap', '@nuxtjs/google-analytics'],
 
   sitemap: {
     routes () {
@@ -135,5 +135,10 @@ module.exports = {
       //   })
       // }
     }
+  },
+
+  googleAnalytics: {
+    id: 'UA-142577326-1'
   }
+
 }

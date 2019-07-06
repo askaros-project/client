@@ -61,6 +61,7 @@
 	import StatsChart from "./StatsChart"
 	import Related from "./Related"
 	import Vue from 'vue'
+	import VueRouter from 'vue-router'
 	import VueAnalytics from 'vue-analytics'
 
   export default observer({
@@ -104,7 +105,7 @@
 			}
 		}
 	})
-
+	
 	Vue.use(VueAnalytics, {
   id: 'UA-142577326-1',
   autoTracking: {
