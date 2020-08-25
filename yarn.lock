@@ -3663,9 +3663,9 @@ highcharts-vue@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/highcharts-vue/-/highcharts-vue-1.2.0.tgz#13ec436eae14fb1ec361033fce9ca66f0a9fbb12"
 
-highcharts@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.0.2.tgz#18a59814d3ca61efa593e3141941147327e9eafb"
+highcharts@^7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.2.2.tgz#94d6bae545d7f0fbf49615b28640f5fdbf99d11e"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
