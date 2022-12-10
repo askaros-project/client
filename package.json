@@ -24,7 +24,7 @@
     "cookie-universal-nuxt": "^2.0.14",
     "cookieparser": "^0.1.0",
     "cross-env": "^5.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-http-to-https": "^1.1.4",
     "highcharts": "^7.0.2",
     "highcharts-vue": "^1.2.0",
